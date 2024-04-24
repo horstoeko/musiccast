@@ -24,6 +24,9 @@ class MusiccastConstants
     public const POWER_OFF = "standby";
     public const POWER_TOGGLE = "toggle";
 
+    public const VOLUME_UP = "up";
+    public const VOLUME_DOWN = "down";
+
     public const TUNER_BAND_AM = "am";
     public const TUNER_BAND_FM = "fm";
     public const TUNER_BAND_DAB = "dab";

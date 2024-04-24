@@ -128,7 +128,7 @@ class MusiccastDeviceInfoModel extends MusiccastBaseModelWithReturnCode
     /**
      * Analytics Info
      *
-     * @var \horstoeko\musiccast\models\MusiccastAnalyticsInfoModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceInfoAnalyticsInfoModel
      */
     public $analyticsInfo = null;
 }

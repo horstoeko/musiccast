@@ -30,14 +30,14 @@ class MusiccastDeviceFeatureTunerModel extends MusiccastBaseModel
     /**
      * Returns object ID, min, max, step values of a parameter
      *
-     * @var \horstoeko\musiccast\models\MusiccastRangeModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel
      */
     public $rangeStep = null;
 
     /**
      * Returns information related to Preset
      *
-     * @var \horstoeko\musiccast\models\MusiccastPresetModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeaturePresetModel
      */
     public $preset = null;
 }

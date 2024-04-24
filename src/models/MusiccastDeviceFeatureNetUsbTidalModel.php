@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the analytics info
+ * Class representing the Tidal model
  *
  * @category MusicCast
  * @package  MusicCast
@@ -18,12 +18,12 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastAnalyticsInfoModel
+class MusiccastDeviceFeatureNetUsbTidalModel extends MusiccastBaseModel
 {
     /**
-     * Unique ID
+     * Mode
      *
      * @var string
      */
-    public $uuid = "";
+    public $mode = "";
 }

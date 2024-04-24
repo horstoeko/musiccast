@@ -16,7 +16,7 @@ use horstoeko\musiccast\utils\MusiccastConstants;
 use horstoeko\musiccast\utils\MusiccastValidation;
 use horstoeko\musiccast\models\MusiccastPowerModel;
 use horstoeko\musiccast\models\MusiccastVolumeModel;
-use horstoeko\musiccast\models\MusicCastLocationInfo;
+use horstoeko\musiccast\models\MusicCastLocationInfoModel;
 use horstoeko\musiccast\models\MusiccastSetInputModel;
 use horstoeko\musiccast\models\MusiccastDeviceInfoModel;
 use horstoeko\musiccast\models\MusiccastVolumeMuteModel;

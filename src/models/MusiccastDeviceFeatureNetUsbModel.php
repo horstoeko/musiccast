@@ -30,7 +30,7 @@ class MusiccastDeviceFeatureNetUsbModel extends MusiccastBaseModel
     /**
      * Returns information related to Preset
      *
-     * @var \horstoeko\musiccast\models\MusiccastPresetModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeaturePresetModel
      */
     public $preset = null;
 
@@ -48,28 +48,28 @@ class MusiccastDeviceFeatureNetUsbModel extends MusiccastBaseModel
     /**
      * Returns information related to playback history
      *
-     * @var \horstoeko\musiccast\models\MusiccastRecentInfoModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbRecentInfoModel
      */
     public $recentInfo = null;
 
     /**
      * Reserved
      *
-     * @var \horstoeko\musiccast\models\MusiccastPlayQueueModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbPlayQueueModel
      */
     public $playQueue = null;
 
     /**
      * Reserved
      *
-     * @var \horstoeko\musiccast\models\MusiccastPlaylistModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbMcPlaylistModel
      */
     public $mcPlaylist = null;
 
     /**
      * Tidal
      *
-     * @var \horstoeko\musiccast\models\MusiccastTidalModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbTidalModel
      */
     public $tidal = null;
 }

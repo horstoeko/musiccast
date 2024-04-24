@@ -13,8 +13,8 @@ use Karriere\JsonDecoder\Transformer;
 use Karriere\JsonDecoder\ClassBindings;
 use Karriere\JsonDecoder\Bindings\ArrayBinding;
 use Karriere\JsonDecoder\Bindings\FieldBinding;
-use horstoeko\musiccast\models\MusiccastRangeModel;
-use horstoeko\musiccast\models\MusiccastPresetModel;
+use horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel;
+use horstoeko\musiccast\models\MusiccastDeviceFeaturePresetModel;
 use horstoeko\musiccast\models\MusiccastDeviceFeatureTunerModel;
 
 /**
@@ -30,8 +30,8 @@ class MusiccastDeviceFeatureTunerTransformer implements Transformer
 {
     public function register(ClassBindings $classBindings)
     {
-        $classBindings->register(new ArrayBinding('rangeStep', 'range_step', MusiccastRangeModel::class));
-        $classBindings->register(new FieldBinding('preset', 'preset', MusiccastPresetModel::class));
+        $classBindings->register(new ArrayBinding('rangeStep', 'range_step', MusiccastDeviceFeatureRangeModel::class));
+        $classBindings->register(new FieldBinding('preset', 'preset', MusiccastDeviceFeaturePresetModel::class));
     }
 
     public function transforms()

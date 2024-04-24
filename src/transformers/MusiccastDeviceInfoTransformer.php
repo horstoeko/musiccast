@@ -9,7 +9,7 @@
 
 namespace horstoeko\musiccast\transformers;
 
-use horstoeko\musiccast\models\MusiccastAnalyticsInfoModel;
+use horstoeko\musiccast\models\MusiccastDeviceInfoAnalyticsInfoModel;
 use horstoeko\musiccast\models\MusiccastDeviceInfoModel;
 use Karriere\JsonDecoder\Bindings\FieldBinding;
 use Karriere\JsonDecoder\ClassBindings;
@@ -28,7 +28,7 @@ class MusiccastDeviceInfoTransformer implements Transformer
 {
     public function register(ClassBindings $classBindings)
     {
-        $classBindings->register(new FieldBinding('analyticsInfo', 'analytics_info', MusiccastAnalyticsInfoModel::class));
+        $classBindings->register(new FieldBinding('analyticsInfo', 'analytics_info', MusiccastDeviceInfoAnalyticsInfoModel::class));
     }
 
     public function transforms()

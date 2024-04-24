@@ -15,7 +15,9 @@ use horstoeko\musiccast\models\MusiccastPowerModel;
 use horstoeko\musiccast\models\MusiccastVolumeModel;
 use horstoeko\musiccast\models\MusiccastSetInputModel;
 use horstoeko\musiccast\models\MusiccastVolumeMuteModel;
+use horstoeko\musiccast\models\MusiccastZoneStatusModel;
 use horstoeko\musiccast\utils\MusiccastConstants;
+use InvalidArgumentException;
 
 /**
  * Class representing the zone operator
@@ -45,6 +47,18 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
         parent::__construct($musiccastConnection);
 
         $this->musiccastOperatorSystem = new MusiccastOperatorSystem($musiccastConnection);
+    }
+
+    /**
+     * Returns zone status
+     *
+     * @return MusiccastZoneStatusModel
+     */
+    public function getStatus(): MusiccastZoneStatusModel
+    {
+        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/getStatus", MusiccastZoneStatusModel::class);
+
+        return $responseObject;
     }
 
     /**
@@ -93,6 +107,40 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     }
 
     /**
+     * Internal helper for setting the volume
+     *
+     * @param string|integer $newVolume
+     * @param integer $newStep
+     * @return MusiccastVolumeModel
+     */
+    private function internalVolumeOperation($newVolume, int $newStep = 1): MusiccastVolumeModel
+    {
+        $zoneStatus = $this->getStatus();
+
+        MusiccastValidation::testStringValueEquals($zoneStatus->power, MusiccastConstants::POWER_ON);
+
+        if (is_int($newVolume)) {
+            $deviceFeatures = $this->musiccastOperatorSystem->getDeviceFeatures();
+
+            MusiccastValidation::testIntValueBetween(
+                $newVolume,
+                $deviceFeatures->getZoneById($this->musiccastConnection->getZone())->getRangeStepById("volume")->min,
+                $deviceFeatures->getZoneById($this->musiccastConnection->getZone())->getRangeStepById("volume")->max
+            );
+        }
+        elseif (is_string($newVolume)) {
+            MusiccastValidation::testInArray([MusiccastConstants::VOLUME_DOWN, MusiccastConstants::VOLUME_UP], $newVolume);
+        }
+        else {
+            throw new InvalidArgumentException("The new volume must be an integer or 'up'/'down'");
+        }
+
+        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setVolume?volume={$newVolume}&step={$newStep}", MusiccastVolumeModel::class);
+
+        return $responseObject;
+    }
+
+    /**
      * Change the volume in the current zone
      *
      * @param integer $newVolume
@@ -101,17 +149,29 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      */
     public function setVolume(int $newVolume, int $newStep = 1): MusiccastVolumeModel
     {
-        $deviceFeatures = $this->musiccastOperatorSystem->getDeviceFeatures();
+        return $this->internalVolumeOperation($newVolume, $newStep);
+    }
 
-        MusiccastValidation::testIntValueBetween(
-            $newVolume,
-            $deviceFeatures->getZoneById($this->musiccastConnection->getZone())->getRangeStepById("volume")->min,
-            $deviceFeatures->getZoneById($this->musiccastConnection->getZone())->getRangeStepById("volume")->max
-        );
+    /**
+     * Change the volume upwards
+     *
+     * @param integer $newStep
+     * @return MusiccastVolumeModel
+     */
+    public function setVolumeUp(int $newStep = 1): MusiccastVolumeModel
+    {
+        return $this->internalVolumeOperation(MusiccastConstants::VOLUME_UP, $newStep);
+    }
 
-        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setVolume?volumne={$newVolume}&step={$newStep}", MusiccastVolumeModel::class);
-
-        return $responseObject;
+    /**
+     * Change the volume downwards
+     *
+     * @param integer $newStep
+     * @return MusiccastVolumeModel
+     */
+    public function setVolumeDown(int $newStep = 1): MusiccastVolumeModel
+    {
+        return $this->internalVolumeOperation(MusiccastConstants::VOLUME_DOWN, $newStep);
     }
 
     /**
@@ -122,6 +182,10 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      */
     private function internalMuteOperation(bool $newMute): MusiccastVolumeMuteModel
     {
+        $zoneStatus = $this->getStatus();
+
+        MusiccastValidation::testStringValueEquals($zoneStatus->power, MusiccastConstants::POWER_ON);
+
         $parameter = ($newMute === true ? "true" : "false");
 
         $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setMute?enable={$parameter}", MusiccastVolumeMuteModel::class);
@@ -157,6 +221,10 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      */
     public function setInput(string $newInputName): MusiccastSetInputModel
     {
+        $zoneStatus = $this->getStatus();
+
+        MusiccastValidation::testStringValueEquals($zoneStatus->power, MusiccastConstants::POWER_ON);
+
         $deviceFeatures = $this->musiccastOperatorSystem->getDeviceFeatures();
 
         MusiccastValidation::testInArray($deviceFeatures->system->getInputIds(), $newInputName);

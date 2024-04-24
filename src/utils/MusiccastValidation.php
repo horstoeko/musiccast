@@ -56,4 +56,36 @@ class MusiccastValidation
 
         throw new InvalidArgumentException("The value must be between {$min} and {$max}. Current value is {$value}");
     }
+
+    /**
+     * Check if $values equals to $equalsTo
+     *
+     * @param integer $value
+     * @param integer $equalsTo
+     * @return void
+     */
+    public static function testIntValueEquals(int $value, int $equalsTo): void
+    {
+        if ($value === $equalsTo) {
+            return;
+        }
+
+        throw new InvalidArgumentException("The value {$value} is not equal to {$equalsTo}");
+    }
+
+    /**
+     * Check if $values equals to $equalsTo
+     *
+     * @param string $value
+     * @param string $equalsTo
+     * @return void
+     */
+    public static function testStringValueEquals(string $value, string $equalsTo): void
+    {
+        if (strcasecmp($value, $equalsTo) === 0) {
+            return;
+        }
+
+        throw new InvalidArgumentException("The value {$value} is not equal to {$equalsTo}");
+    }
 }

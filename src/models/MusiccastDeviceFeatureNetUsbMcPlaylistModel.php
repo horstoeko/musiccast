@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the tuner preset info model
+ * Class representing the device feature (for the system.zone)
  *
  * @category MusicCast
  * @package  MusicCast
@@ -18,36 +18,19 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastTunerNetUsbInfoItemModel extends MusiccastBaseModel
+class MusiccastDeviceFeatureNetUsbMcPlaylistModel extends MusiccastBaseModel
 {
     /**
-     * Band (am, fm, dab)
-     *
-     * @var string
-     */
-    public $band = "";
-
-    /**
-     * Returns
-     * - frequency (unit in kHz) (band = AM or FM)
-     * - Station ID (band = DAB)
-     * 0 when there’s no presets
+     * Reserved
      *
      * @var integer
      */
-    public $number = 0;
+    public $size = 0;
 
     /**
      * Reserved
      *
-     * @var int
+     * @var integer
      */
-    public $hdprogram = 0;
-
-    /**
-     * Reterns text information of FM(RDS) or DAB
-     *
-     * @var string
-     */
-    public $text = "";
+    public $num = 0;
 }

@@ -96,7 +96,7 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
     /**
      * Returns ID, min, max, step values of a parameter
      *
-     * @var \horstoeko\musiccast\models\MusiccastRangeModel[]
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel[]
      */
     public $rangeStep = null;
 
@@ -177,11 +177,11 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      * Get a zone definition by it's id
      *
      * @param string $id
-     * @return MusiccastRangeModel|null
+     * @return MusiccastDeviceFeatureRangeModel|null
      */
-    public function getRangeStepById(string $searchForId): ?MusiccastRangeModel
+    public function getRangeStepById(string $searchForId): ?MusiccastDeviceFeatureRangeModel
     {
-        return array_reduce($this->rangeStep, static function ($carry, MusiccastRangeModel $rangeStep) use ($searchForId) {
+        return array_reduce($this->rangeStep, static function ($carry, MusiccastDeviceFeatureRangeModel $rangeStep) use ($searchForId) {
             return $carry ?? ($rangeStep->id === $searchForId ? $rangeStep : $carry);
         }, null);
     }

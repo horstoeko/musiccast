@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\transformers;
 
 use horstoeko\musiccast\models\MusiccastDeviceFeatureZoneModel;
-use horstoeko\musiccast\models\MusiccastRangeModel;
+use horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel;
 use Karriere\JsonDecoder\Bindings\ArrayBinding;
 use Karriere\JsonDecoder\ClassBindings;
 use Karriere\JsonDecoder\Transformer;
@@ -28,7 +28,7 @@ class MusiccastDeviceFeatureZoneTransformer implements Transformer
 {
     public function register(ClassBindings $classBindings)
     {
-        $classBindings->register(new ArrayBinding('rangeStep', 'range_step', MusiccastRangeModel::class));
+        $classBindings->register(new ArrayBinding('rangeStep', 'range_step', MusiccastDeviceFeatureRangeModel::class));
     }
 
     public function transforms()

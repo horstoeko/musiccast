@@ -18,7 +18,7 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastPlaylistModel extends MusiccastBaseModel
+class MusiccastDeviceFeatureNetUsbPlayQueueModel extends MusiccastBaseModel
 {
     /**
      * Reserved
@@ -26,11 +26,4 @@ class MusiccastPlaylistModel extends MusiccastBaseModel
      * @var integer
      */
     public $size = 0;
-
-    /**
-     * Reserved
-     *
-     * @var integer
-     */
-    public $num = 0;
 }

@@ -18,12 +18,12 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastPlayQueueModel extends MusiccastBaseModel
+class MusiccastDeviceFeatureNetUsbRecentInfoModel extends MusiccastBaseModel
 {
     /**
-     * Reserved
+     * Returns number of memorable playback history. Playback history is shared among all Net/USB Input sources
      *
      * @var integer
      */
-    public $size = 0;
+    public $num = 0;
 }

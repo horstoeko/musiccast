@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the Tidal model
+ * Class representing the device feature (for the system.zone)
  *
  * @category MusicCast
  * @package  MusicCast
@@ -18,12 +18,33 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastTidalModel extends MusiccastBaseModel
+class MusiccastDeviceFeatureRangeModel extends MusiccastBaseModel
 {
     /**
-     * Mode
+     * ID
      *
      * @var string
      */
-    public $mode = "";
+    public $id = "";
+
+    /**
+     * Minimum value
+     *
+     * @var integer
+     */
+    public $min = 0;
+
+    /**
+     * Maximum value
+     *
+     * @var integer
+     */
+    public $max = 0;
+
+    /**
+     * Steps
+     *
+     * @var integer
+     */
+    public $step = 0;
 }

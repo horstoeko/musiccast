@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device feature (for the system.zone)
+ * Class representing the analytics info
  *
  * @category MusicCast
  * @package  MusicCast
@@ -18,19 +18,12 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastPresetModel extends MusiccastBaseModel
+class MusiccastDeviceInfoAnalyticsInfoModel
 {
     /**
-     * Type
+     * Unique ID
      *
      * @var string
      */
-    public $type = "";
-
-    /**
-     * Number of presets available
-     *
-     * @var integer
-     */
-    public $num = 0;
+    public $uuid = "";
 }

@@ -18,7 +18,7 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusicCastLocationInfo extends MusiccastBaseModelWithReturnCode
+class MusicCastLocationInfoModel extends MusiccastBaseModelWithReturnCode
 {
     /**
      * Returns Location ID in 32-digit hex
@@ -43,7 +43,7 @@ class MusicCastLocationInfo extends MusiccastBaseModelWithReturnCode
 
     /**
      * Returns Stereo Pair setting status
-     * 
+     *
      * Values
      * - none
      * - master_left
