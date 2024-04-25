@@ -127,11 +127,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
                 $deviceFeatures->getZoneById($this->musiccastConnection->getZone())->getRangeStepById("volume")->min,
                 $deviceFeatures->getZoneById($this->musiccastConnection->getZone())->getRangeStepById("volume")->max
             );
-        }
-        elseif (is_string($newVolume)) {
+        } elseif (is_string($newVolume)) {
             MusiccastValidation::testInArray([MusiccastConstants::VOLUME_DOWN, MusiccastConstants::VOLUME_UP], $newVolume);
-        }
-        else {
+        } else {
             throw new InvalidArgumentException("The new volume must be an integer or 'up'/'down'");
         }
 
