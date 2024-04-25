@@ -38,7 +38,7 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
     /**
      * Input list
      *
-     * @var MusiccastDeviceInputModel[]
+     * @var MusiccastDeviceFeatureInputModel[]
      */
     public $inputList;
 
@@ -56,7 +56,7 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
      */
     public function getInputIds(): array
     {
-        return array_map(function (MusiccastDeviceInputModel $item) {
+        return array_map(function (MusiccastDeviceFeatureInputModel $item) {
             return $item->id;
         }, $this->inputList);
     }

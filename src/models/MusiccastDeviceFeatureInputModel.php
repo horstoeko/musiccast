@@ -18,7 +18,7 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastDeviceInputModel extends MusiccastBaseModel
+class MusiccastDeviceFeatureInputModel extends MusiccastBaseModel
 {
     /**
      * Input id

@@ -9,7 +9,7 @@
 
 namespace horstoeko\musiccast\operators;
 
-use horstoeko\musiccast\models\MusicCastLocationInfoModel;
+use horstoeko\musiccast\models\MusiccastLocationInfoModel;
 use horstoeko\musiccast\models\MusiccastDeviceInfoModel;
 use horstoeko\musiccast\models\MusiccastDeviceFeatureModel;
 
@@ -51,11 +51,11 @@ class MusiccastOperatorSystem extends MusiccastOperatorBase
     /**
      * Get the device features
      *
-     * @return MusicCastLocationInfoModel
+     * @return MusiccastLocationInfoModel
      */
-    public function getLocationInfo(): MusicCastLocationInfoModel
+    public function getLocationInfo(): MusiccastLocationInfoModel
     {
-        $responseObject = $this->musiccastConnection->requestGet('system/getLocationInfo', MusicCastLocationInfoModel::class);
+        $responseObject = $this->musiccastConnection->requestGet('system/getLocationInfo', MusiccastLocationInfoModel::class);
 
         return $responseObject;
     }
