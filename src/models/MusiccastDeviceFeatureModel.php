@@ -21,37 +21,37 @@ namespace horstoeko\musiccast\models;
 class MusiccastDeviceFeatureModel extends MusiccastBaseModelWithReturnCode
 {
     /**
-     * System Features
+     * system’s overall info
      *
-     * @var MusiccastDeviceFeatureSystemModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureSystemModel
      */
     public $system = null;
 
     /**
-     * Zones
+     * Zone related information
      *
-     * @var MusiccastDeviceFeatureZoneModel[]
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureZoneModel[]
      */
     public $zones = null;
 
     /**
-     * Tuner
+     * Information related to Tuner function
      *
-     * @var MusiccastDeviceFeatureTunerModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureTunerModel
      */
     public $tuner = null;
 
     /**
-     * Net/USB
+     * Information related to Net/USB function
      *
-     * @var MusiccastDeviceFeatureNetUsbModel
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbModel
      */
     public $netusb = null;
 
     /**
      * Get a zone definition by it's id
      *
-     * @param string $id
+     * @param string $searchForId
      * @return MusiccastDeviceFeatureZoneModel|null
      */
     public function getZoneById(string $searchForId): ?MusiccastDeviceFeatureZoneModel

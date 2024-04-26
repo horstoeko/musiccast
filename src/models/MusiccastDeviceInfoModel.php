@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device info
+ * Class representing the basic information of a Device
  *
  * @category MusicCast
  * @package  MusicCast

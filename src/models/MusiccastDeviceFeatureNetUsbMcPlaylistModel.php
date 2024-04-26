@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device feature (for the system.zone)
+ * Class representing the device feature (for the NetUSB MC Playlist)
  *
  * @category MusicCast
  * @package  MusicCast

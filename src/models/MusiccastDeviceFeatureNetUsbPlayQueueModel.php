@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device feature (for the system.zone)
+ * Class representing the device feature (Play Queue for Net/Usb)
  *
  * @category MusicCast
  * @package  MusicCast

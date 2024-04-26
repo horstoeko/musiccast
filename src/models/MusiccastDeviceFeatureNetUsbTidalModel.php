@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the Tidal model
+ * Class representing the device feature (Tidal information for Net/Usb)
  *
  * @category MusicCast
  * @package  MusicCast

@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device feature (for the system.zone)
+ * Class representing the device feature (information related to Preset for Net/Usb)
  *
  * @category MusicCast
  * @package  MusicCast
@@ -28,7 +28,7 @@ class MusiccastDeviceFeaturePresetModel extends MusiccastBaseModel
     public $type = "";
 
     /**
-     * Number of presets available
+     * Returns preset capable number. All sources of Net/USB Input share this presets
      *
      * @var integer
      */

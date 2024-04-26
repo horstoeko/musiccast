@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device feature (for the system.tuner)
+ * Class representing the device feature (features for Net/Usb)
  *
  * @category MusicCast
  * @package  MusicCast
@@ -35,17 +35,6 @@ class MusiccastDeviceFeatureNetUsbModel extends MusiccastBaseModel
     public $preset = null;
 
     /**
-     * Returns type of Net Radio. If there’s no list of this, it’s fixed to "vTuner"
-     *
-     * Values
-     * - vtuner
-     * - airabl
-     *
-     * @var string
-     */
-    public $netRadioType = "";
-
-    /**
      * Returns information related to playback history
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbRecentInfoModel
@@ -65,6 +54,17 @@ class MusiccastDeviceFeatureNetUsbModel extends MusiccastBaseModel
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbMcPlaylistModel
      */
     public $mcPlaylist = null;
+
+    /**
+     * Returns type of Net Radio. If there’s no list of this, it’s fixed to "vTuner"
+     *
+     * Values
+     * - vtuner
+     * - airabl
+     *
+     * @var string
+     */
+    public $netRadioType = "";
 
     /**
      * Tidal

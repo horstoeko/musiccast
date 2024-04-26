@@ -12,7 +12,7 @@ namespace horstoeko\musiccast\models;
 use RuntimeException;
 
 /**
- * Class representing the device feature
+ * Class representing the base class for all operator models
  *
  * @category MusicCast
  * @package  MusicCast

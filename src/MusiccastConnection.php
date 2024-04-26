@@ -13,6 +13,7 @@ use GuzzleHttp\Client;
 use Karriere\JsonDecoder\JsonDecoder;
 use horstoeko\musiccast\models\MusiccastBaseModelWithReturnCode;
 use horstoeko\musiccast\transformers\MusiccastDeviceInfoTransformer;
+use horstoeko\musiccast\transformers\MusiccastLocationInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastDeviceFeatureTransformer;
 use horstoeko\musiccast\transformers\MusiccastTunerPresetInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastNetUsbPresetInfoTransformer;
@@ -103,6 +104,7 @@ class MusiccastConnection
         $this->jsonDecoder->register(new MusiccastDeviceFeatureNetUsbTransformer());
         $this->jsonDecoder->register(new MusiccastTunerPresetInfoTransformer());
         $this->jsonDecoder->register(new MusiccastNetUsbPresetInfoTransformer());
+        $this->jsonDecoder->register(new MusiccastLocationInfoTransformer());
     }
 
     /**
@@ -142,7 +144,7 @@ class MusiccastConnection
         $response = $this->httpClient->request("GET", $uri);
 
         /**
-         * @var MusiccastBaseModelWithReturnCode
+         * @var \horstoeko\musiccast\models\MusiccastBaseModelWithReturnCode
          */
         $responseObject = $this->jsonDecoder->decode($response->getBody()->getContents(), $modelClass);
         $responseObject->throwIfFailed();

@@ -18,7 +18,7 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastDeviceFeatureInputModel extends MusiccastBaseModel
+class MusiccastDeviceFeatureSystemInputModel extends MusiccastBaseModel
 {
     /**
      * Input id
@@ -50,7 +50,12 @@ class MusiccastDeviceFeatureInputModel extends MusiccastBaseModel
 
     /**
      * Returns a type of playback info. Depending on this type, use specific API to retrieve appropriate playback info
-     * Values: "none" / "tuner" / "netusb" / "cd"
+     *
+     * Values:
+     * - none
+     * - tuner
+     * - netusb
+     * - cd
      *
      * @var string
      */

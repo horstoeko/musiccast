@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device feature (for the system)
+ * Class representing the device feature (for system)
  *
  * @category MusicCast
  * @package  MusicCast
@@ -21,7 +21,7 @@ namespace horstoeko\musiccast\models;
 class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
 {
     /**
-     * Functions possible
+     * List of valid function
      *
      * @var string[]
      */
@@ -36,11 +36,18 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
     public $zoneNum = 0;
 
     /**
-     * Input list
+     * List of inputs
      *
-     * @var MusiccastDeviceFeatureInputModel[]
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureSystemInputModel[]
      */
-    public $inputList;
+    public $inputList = null;
+
+    /**
+     * Minimum/Maximum/Step values of a parameter
+     *
+     * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel[]
+     */
+    public $rangeStep = null;
 
     /**
      * Web Control URL
@@ -56,7 +63,7 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
      */
     public function getInputIds(): array
     {
-        return array_map(function (MusiccastDeviceFeatureInputModel $item) {
+        return array_map(function (MusiccastDeviceFeatureSystemInputModel $item) {
             return $item->id;
         }, $this->inputList);
     }

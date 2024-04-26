@@ -88,7 +88,7 @@ $deviceFeatures = $musiccastOperatorSystem->getDeviceFeatures();
 
 //$musiccastOperatorZone->setVolumeDown();
 //$musiccastOperatorZone->setMute();
-$musiccastOperatorZone->setInput("tuner");
+// $musiccastOperatorZone->setInput("tuner");
 
 /**
  * After output

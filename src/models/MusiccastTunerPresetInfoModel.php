@@ -28,9 +28,13 @@ class MusiccastTunerPresetInfoModel extends MusiccastBaseModelWithReturnCode
     public $presetInfo = [];
 
     /**
-     * Available functions
+     * list of valid functions for Preset. (Recall/Store functions are always valid without specifically listed here)
      *
-     * @var array
+     * Values:
+     * - clear
+     * - move
+     *
+     * @var string[]
      */
     public $funcList = [];
 

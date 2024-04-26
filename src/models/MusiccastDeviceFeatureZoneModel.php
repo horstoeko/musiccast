@@ -25,7 +25,14 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      *
      * @var string
      */
-    public $id = [];
+    public $id = "";
+
+    /**
+     * Returns whether the target Zone is Zone B or not. Valid only when Zone ID is "zone2"
+     *
+     * @var boolean
+     */
+    public $zoneB = false;
 
     /**
      * Functions possible
@@ -44,14 +51,14 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
     /**
      * Available sound programs
      *
-     * @var array
+     * @var string[]
      */
     public $soundProgramList = [];
 
     /**
      * Available Surround decodes
      *
-     * @var array
+     * @var string[]
      */
     public $surrDecoderTypeList = [];
 
@@ -63,9 +70,17 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      * - auto
      * - bypas
      *
-     * @var array
+     * @var string[]
      */
     public $toneControlModeList = [];
+
+    /**
+     * Returns selectable settings of Equalizer Mode.
+     * If there’s not list of this, it’s fixed to “manual”
+     *
+     * @var string[]
+     */
+    public $equalizerModeList = [];
 
     /**
      * Returns selectable settings of Link Controls
@@ -75,7 +90,7 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      * - stability
      * - speed
      *
-     * @var array
+     * @var string[]
      */
     public $linkControlList = [];
 
@@ -89,9 +104,20 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      * - audio_sync_off
      * - balanced
      *
-     * @var array
+     * @var string[]
      */
     public $linkAudioDelayList = [];
+
+    /**
+     * Returns selectable settings of Link Audio Quality
+     *
+     * Values:
+     * - compressed
+     * - uncompressed
+     *
+     * @var string[]
+    */
+    public $linkAudioQualityList = [];
 
     /**
      * Returns ID, min, max, step values of a parameter
@@ -119,7 +145,7 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      * - select
      * - return
      *
-     * @var array
+     * @var string[]
      */
     public $cursorList = [];
 
@@ -141,7 +167,7 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      * - yellow
      * - "blue"
      *
-     * @var array
+     * @var string[]
      */
     public $menuList = [];
 
@@ -155,28 +181,36 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      *
      * _Note:_ For models fixed to "db", the value is "db" only
      *
-     * @var array
+     * @var string[]
      */
     public $actualVolumeModeList = [];
 
     /**
+     * Returns function list of configurable Audio Select.
+     * This parameter does not exist in models without a function
+     *
+     * Values:
+     * - auto
+     * - hdmi
+     * - coax_opt
+     * - analog
+     * - unavailabl
+     *
+     * @var string[]
+     */
+    public $audioSelectList = [];
+
+    /**
      * Undocumented variable
      *
-     * @var array
+     * @var string[]
      */
     public $ccsSupported = [];
 
     /**
-     * Returns whether the target Zone is Zone B or not. Valid only when Zone ID is "zone2"
-     *
-     * @var boolean
-     */
-    public $zoneB = false;
-
-    /**
      * Get a zone definition by it's id
      *
-     * @param string $id
+     * @param string $searchForId
      * @return MusiccastDeviceFeatureRangeModel|null
      */
     public function getRangeStepById(string $searchForId): ?MusiccastDeviceFeatureRangeModel

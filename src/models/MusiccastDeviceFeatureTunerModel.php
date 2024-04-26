@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device feature (for the system.tuner)
+ * Class representing the device feature (for the tuner)
  *
  * @category MusicCast
  * @package  MusicCast

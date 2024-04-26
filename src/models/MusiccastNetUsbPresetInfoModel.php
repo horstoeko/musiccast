@@ -21,16 +21,20 @@ namespace horstoeko\musiccast\models;
 class MusiccastNetUsbPresetInfoModel extends MusiccastBaseModelWithReturnCode
 {
     /**
-     * Presets
+     * Preset Info. Element number of an array can be gotten via system/getFeatures
      *
      * @var \horstoeko\musiccast\models\MusiccastNetUsbPresetInfoItemModel[]
      */
     public $presetInfo = [];
 
     /**
-     * Available functions
+     * list of valid functions for Preset. (Recall/Store functions are always valid without specifically listed here)
      *
-     * @var array
+     * Values:
+     * - clear
+     * - move
+     *
+     * @var string[]
      */
     public $funcList = [];
 

@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the device feature (for the system.zone)
+ * Class representing the minimum/maximum/step values of a parameter
  *
  * @category MusicCast
  * @package  MusicCast

@@ -37,7 +37,7 @@ class MusiccastLocationInfoModel extends MusiccastBaseModelWithReturnCode
     /**
      * Zone list
      *
-     * @var object
+     * @var \horstoeko\musiccast\models\MusiccastLocationInfoZonelistModel[]
      */
     public $zoneList = null;
 

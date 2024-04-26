@@ -21,7 +21,7 @@ namespace horstoeko\musiccast\models;
 class MusiccastDeviceInfoAnalyticsInfoModel
 {
     /**
-     * Unique ID
+     * Reserved
      *
      * @var string
      */

@@ -12,7 +12,8 @@ namespace horstoeko\musiccast\transformers;
 use Karriere\JsonDecoder\Transformer;
 use Karriere\JsonDecoder\ClassBindings;
 use Karriere\JsonDecoder\Bindings\ArrayBinding;
-use horstoeko\musiccast\models\MusiccastDeviceFeatureInputModel;
+use horstoeko\musiccast\models\MusiccastDeviceFeatureSystemInputModel;
+use horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel;
 use horstoeko\musiccast\models\MusiccastDeviceFeatureSystemModel;
 
 /**
@@ -28,7 +29,8 @@ class MusiccastDeviceFeatureSystemTransformer implements Transformer
 {
     public function register(ClassBindings $classBindings)
     {
-        $classBindings->register(new ArrayBinding('inputList', 'input_list', MusiccastDeviceFeatureInputModel::class));
+        $classBindings->register(new ArrayBinding('inputList', 'input_list', MusiccastDeviceFeatureSystemInputModel::class));
+        $classBindings->register(new ArrayBinding('rangeStep', 'range_step', MusiccastDeviceFeatureRangeModel::class));
     }
 
     public function transforms()
