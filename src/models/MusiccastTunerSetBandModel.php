@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the response of the recallPreset (tuner)
+ * Class representing the tuner band
  *
  * @category MusicCast
  * @package  MusicCast
@@ -18,6 +18,6 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastRecallTunerPresetModel extends MusiccastBaseModelWithReturnCode
+class MusiccastTunerSetBandModel extends MusiccastBaseModelWithReturnCode
 {
 }

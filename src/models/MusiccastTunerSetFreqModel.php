@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the Volume model
+ * Class representing the tuner frequency model
  *
  * @category MusicCast
  * @package  MusicCast
@@ -18,6 +18,6 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastSetInputModel extends MusiccastBaseModelWithReturnCode
+class MusiccastTunerSetFreqModel extends MusiccastBaseModelWithReturnCode
 {
 }

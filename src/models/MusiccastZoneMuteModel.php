@@ -18,6 +18,6 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastVolumeMuteModel extends MusiccastBaseModelWithReturnCode
+class MusiccastZoneMuteModel extends MusiccastBaseModelWithReturnCode
 {
 }

@@ -2,10 +2,12 @@
 
 use horstoeko\musiccast\MusiccastConnection;
 use horstoeko\musiccast\MusiccastConfiguration;
-use horstoeko\musiccast\operators\MusiccastOperatorNetUsb;
+use horstoeko\musiccast\utils\MusiccastConstants;
 use horstoeko\musiccast\operators\MusiccastOperatorZone;
 use horstoeko\musiccast\operators\MusiccastOperatorTuner;
+use horstoeko\musiccast\operators\MusiccastOperatorNetUsb;
 use horstoeko\musiccast\operators\MusiccastOperatorSystem;
+use horstoeko\musiccast\models\MusiccastTunerPresetInfoItemModel;
 
 require dirname(__FILE__) . "/../vendor/autoload.php";
 
@@ -33,13 +35,29 @@ function writeNewLineIf(bool $condition): void
 function writeLn(string $string, bool $noNewLine = false): void
 {
     writeString($string);
-    writeNewLine($noNewLine === false);
+    writeNewLineIf($noNewLine === false);
 }
 
 function writeDelimiter(): void
 {
     writeString(str_repeat("═", 70));
     writeNewLine();
+}
+
+function writeTableColumn(string $string, int $size, bool $lastColumn = false): void
+{
+    writeLn(str_pad(substr($string, 0, $size), $size, " ", STR_PAD_RIGHT), $lastColumn === false);
+}
+
+function writeTableDelimiter(int $size): void
+{
+    writeString(str_repeat("-", $size));
+    writeNewLine();
+}
+
+function bool2str(bool $value): string
+{
+    return $value === true ? "Yes" : "No";
 }
 
 /**
@@ -86,51 +104,78 @@ $deviceFeatures = $musiccastOperatorSystem->getDeviceFeatures();
  * Zone
  */
 
-//$musiccastOperatorZone->setVolumeDown();
-//$musiccastOperatorZone->setMute();
+$zoneStatus = $musiccastOperatorZone->getStatus();
+
+writeNewLine();
+writeLn("Zone Status for zone {$conn->getZone()}");
+writeDelimiter();
+writeLn("Power ................. " . $zoneStatus->power);
+writeLn("Input ................. " . $zoneStatus->input . " (" . $zoneStatus->inputText . ")");
+writeLn("Volume ................ " . $zoneStatus->volume);
+writeLn("Max Volume ............ " . $zoneStatus->maxVolume);
+writeLn("Mute .................. " . bool2str($zoneStatus->mute));
+writeDelimiter();
+
+//$musiccastOperatorZone->powerOn();
+
+$zoneStatus = $musiccastOperatorZone->getStatus();
+
+if ($zoneStatus->isPoweredOn()) {
+    $musiccastOperatorZone->setVolume(70);
+
+    $zoneStatus = $musiccastOperatorZone->getStatus();
+
+    writeLn("Power ................. " . $zoneStatus->power);
+    writeLn("Input ................. " . $zoneStatus->input . " (" . $zoneStatus->inputText . ")");
+    writeLn("Volume ................ " . $zoneStatus->volume);
+    writeDelimiter();
+
+    $musiccastOperatorZone->setInput("tuner");
+
+    $zoneStatus = $musiccastOperatorZone->getStatus();
+
+    writeLn("Power ................. " . $zoneStatus->power);
+    writeLn("Input ................. " . $zoneStatus->input . " (" . $zoneStatus->inputText . ")");
+    writeLn("Volume ................ " . $zoneStatus->volume);
+    writeDelimiter();
+}
+
+// $musiccastOperatorZone->setVolumeDown();
+// $musiccastOperatorZone->setMute();
 // $musiccastOperatorZone->setInput("tuner");
+
+/**
+ * Tuner
+ */
+
+$tunerPlayInfo = $musiccastOperatorTuner->getTunerPlayInfo();
+
+var_dump($tunerPlayInfo);
+
+foreach ([MusiccastConstants::TUNER_BAND_AM, MusiccastConstants::TUNER_BAND_FM, MusiccastConstants::TUNER_BAND_DAB] as $tunerBand) {
+    $presetInfo = array_filter($musiccastOperatorTuner->getTunerPresets($tunerBand)->presetInfo, function (MusiccastTunerPresetInfoItemModel $item) {
+        return $item->number > 0;
+    });
+
+    if (empty($presetInfo)) {
+        continue;
+    }
+
+    writeNewLine();
+    writeLn("Tuner Presets for $tunerBand band");
+    writeDelimiter();
+    writeTableColumn("Number", 10);
+    writeTableColumn("Name", 30, true);
+    writeTableDelimiter(40);
+    foreach ($presetInfo as $presetInfoItem) {
+        writeTableColumn($presetInfoItem->number, 10);
+        writeTableColumn($presetInfoItem->text, 30, true);
+    }
+    writeTableDelimiter(40);
+}
 
 /**
  * After output
  */
 
 writeNewLine();
-
-/*
-$deviceInfo = $conn->getDeviceInfo();
-$deviceFeature = $conn->getDeviceFeature();
-$deviceLocation = $conn->getLocationInfo();
-
-//$conn->powerOn();
-//$conn->recallTunerPreset("dab", 1); // Sunshine Live
-//$conn->recallNetUsbPreset(5); //90s90s Techno
-
-//$conn->setInput("tuner");
-//$conn->recallTunerPreset("dab", 1);
-//$conn->setInput("net_radio");
-//$conn->powerOff();
-
-//$setInput = $conn->setInput("tuner");
-//$setTunerBand = $conn->setTunerBand("dab");
-//$tunerPresets = $conn->getTunerPresets("dab");
-//$netUsbPresets = $conn->getNetUsbPresets("dab");
-//$recallTunerPreset = $conn->recallTunerPreset("dab", 1);
-
-//var_dump($recallTunerPreset);
-
-//var_dump($netUsbPresets->getIndexByText('Radio Paradise (Paradise/English)'));
-//var_dump($netUsbPresets);
-//var_dump($tunerPresets);
-//var_dump($tunerPresets->getIndexByNumber(6));
-//var_dump($setTunerBand);
-//var_dump($deviceFeature);
-//var_dump($deviceInfo);
-//var_dump($tunerPresets);
-//var_dump($netUsbPresets);
-//var_dump($setInput);
-//var_dump($deviceInfo);
-//var_dump($deviceLocation);
-//echo $deviceInfo->getOperationMessage() . PHP_EOL;
-//var_dump($deviceFeature->system->inputList);
-//echo gettype($deviceFeature).PHP_EOL;
-*/

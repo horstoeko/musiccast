@@ -11,10 +11,10 @@ namespace horstoeko\musiccast\operators;
 
 use horstoeko\musiccast\MusiccastConnection;
 use horstoeko\musiccast\utils\MusiccastValidation;
-use horstoeko\musiccast\models\MusiccastPowerModel;
-use horstoeko\musiccast\models\MusiccastVolumeModel;
-use horstoeko\musiccast\models\MusiccastSetInputModel;
-use horstoeko\musiccast\models\MusiccastVolumeMuteModel;
+use horstoeko\musiccast\models\MusiccastZonePowerModel;
+use horstoeko\musiccast\models\MusiccastZoneVolumeModel;
+use horstoeko\musiccast\models\MusiccastZoneSetInputModel;
+use horstoeko\musiccast\models\MusiccastZoneMuteModel;
 use horstoeko\musiccast\models\MusiccastZoneStatusModel;
 use horstoeko\musiccast\utils\MusiccastConstants;
 use InvalidArgumentException;
@@ -65,13 +65,13 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      * Helper method for Power-on-Off-Toggle
      *
      * @param string $operation
-     * @return MusiccastPowerModel
+     * @return MusiccastZonePowerModel
      */
-    private function internalPowerOperation(string $operation): MusiccastPowerModel
+    private function internalPowerOperation(string $operation): MusiccastZonePowerModel
     {
         MusiccastValidation::testInArray([MusiccastConstants::POWER_ON, MusiccastConstants::POWER_OFF, MusiccastConstants::POWER_TOGGLE], $operation);
 
-        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setPower?power={$operation}", MusiccastPowerModel::class);
+        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setPower?power={$operation}", MusiccastZonePowerModel::class);
 
         return $responseObject;
     }
@@ -79,9 +79,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Power-On device
      *
-     * @return MusiccastPowerModel
+     * @return MusiccastZonePowerModel
      */
-    public function powerOn(): MusiccastPowerModel
+    public function powerOn(): MusiccastZonePowerModel
     {
         return $this->internalPowerOperation(MusiccastConstants::POWER_ON);
     }
@@ -89,9 +89,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Power-Off device
      *
-     * @return MusiccastPowerModel
+     * @return MusiccastZonePowerModel
      */
-    public function powerOff(): MusiccastPowerModel
+    public function powerOff(): MusiccastZonePowerModel
     {
         return $this->internalPowerOperation(MusiccastConstants::POWER_OFF);
     }
@@ -99,9 +99,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Toggle Power-On/Off-State
      *
-     * @return MusiccastPowerModel
+     * @return MusiccastZonePowerModel
      */
-    public function powerToggle(): MusiccastPowerModel
+    public function powerToggle(): MusiccastZonePowerModel
     {
         return $this->internalPowerOperation(MusiccastConstants::POWER_TOGGLE);
     }
@@ -111,9 +111,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      *
      * @param string|integer $newVolume
      * @param integer $newStep
-     * @return MusiccastVolumeModel
+     * @return MusiccastZoneVolumeModel
      */
-    private function internalVolumeOperation($newVolume, int $newStep = 1): MusiccastVolumeModel
+    private function internalVolumeOperation($newVolume, int $newStep = 1): MusiccastZoneVolumeModel
     {
         $zoneStatus = $this->getStatus();
 
@@ -133,7 +133,7 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
             throw new InvalidArgumentException("The new volume must be an integer or 'up'/'down'");
         }
 
-        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setVolume?volume={$newVolume}&step={$newStep}", MusiccastVolumeModel::class);
+        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setVolume?volume={$newVolume}&step={$newStep}", MusiccastZoneVolumeModel::class);
 
         return $responseObject;
     }
@@ -143,9 +143,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      *
      * @param integer $newVolume
      * @param integer $newStep
-     * @return MusiccastVolumeModel
+     * @return MusiccastZoneVolumeModel
      */
-    public function setVolume(int $newVolume, int $newStep = 1): MusiccastVolumeModel
+    public function setVolume(int $newVolume, int $newStep = 1): MusiccastZoneVolumeModel
     {
         return $this->internalVolumeOperation($newVolume, $newStep);
     }
@@ -154,9 +154,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      * Change the volume upwards
      *
      * @param integer $newStep
-     * @return MusiccastVolumeModel
+     * @return MusiccastZoneVolumeModel
      */
-    public function setVolumeUp(int $newStep = 1): MusiccastVolumeModel
+    public function setVolumeUp(int $newStep = 1): MusiccastZoneVolumeModel
     {
         return $this->internalVolumeOperation(MusiccastConstants::VOLUME_UP, $newStep);
     }
@@ -165,9 +165,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      * Change the volume downwards
      *
      * @param integer $newStep
-     * @return MusiccastVolumeModel
+     * @return MusiccastZoneVolumeModel
      */
-    public function setVolumeDown(int $newStep = 1): MusiccastVolumeModel
+    public function setVolumeDown(int $newStep = 1): MusiccastZoneVolumeModel
     {
         return $this->internalVolumeOperation(MusiccastConstants::VOLUME_DOWN, $newStep);
     }
@@ -176,9 +176,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      * Helper-method for mute-/unmute operations
      *
      * @param boolean $newMute
-     * @return MusiccastVolumeMuteModel
+     * @return MusiccastZoneMuteModel
      */
-    private function internalMuteOperation(bool $newMute): MusiccastVolumeMuteModel
+    private function internalMuteOperation(bool $newMute): MusiccastZoneMuteModel
     {
         $zoneStatus = $this->getStatus();
 
@@ -186,7 +186,7 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
 
         $parameter = ($newMute === true ? "true" : "false");
 
-        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setMute?enable={$parameter}", MusiccastVolumeMuteModel::class);
+        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setMute?enable={$parameter}", MusiccastZoneMuteModel::class);
 
         return $responseObject;
     }
@@ -194,9 +194,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Mute current zone
      *
-     * @return MusiccastVolumeMuteModel
+     * @return MusiccastZoneMuteModel
      */
-    public function setMute(): MusiccastVolumeMuteModel
+    public function setMute(): MusiccastZoneMuteModel
     {
         return $this->internalMuteOperation(true);
     }
@@ -204,9 +204,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Unkute current zone
      *
-     * @return MusiccastVolumeMuteModel
+     * @return MusiccastZoneMuteModel
      */
-    public function setUnmute(): MusiccastVolumeMuteModel
+    public function setUnmute(): MusiccastZoneMuteModel
     {
         return $this->internalMuteOperation(false);
     }
@@ -215,9 +215,9 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
      * Switch/Set the device input
      *
      * @param string $newInputName
-     * @return MusiccastSetInputModel
+     * @return MusiccastZoneSetInputModel
      */
-    public function setInput(string $newInputName): MusiccastSetInputModel
+    public function setInput(string $newInputName): MusiccastZoneSetInputModel
     {
         $zoneStatus = $this->getStatus();
 
@@ -227,7 +227,7 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
 
         MusiccastValidation::testInArray($deviceFeatures->system->getInputIds(), $newInputName);
 
-        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setInput?input={$newInputName}", MusiccastSetInputModel::class);
+        $responseObject = $this->musiccastConnection->requestGet("{$this->musiccastConnection->getZone()}/setInput?input={$newInputName}", MusiccastZoneSetInputModel::class);
 
         return $responseObject;
     }

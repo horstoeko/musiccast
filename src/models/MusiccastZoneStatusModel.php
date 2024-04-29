@@ -9,6 +9,8 @@
 
 namespace horstoeko\musiccast\models;
 
+use horstoeko\musiccast\utils\MusiccastConstants;
+
 /**
  * Class representing the zone status model
  *
@@ -128,4 +130,24 @@ class MusiccastZoneStatusModel extends MusiccastBaseModelWithReturnCode
      * @var boolean
      */
     public $enhancer = false;
+
+    /**
+     * Returns true if the current zone is in standby mode
+     *
+     * @return boolean
+     */
+    public function isStandBy(): bool
+    {
+        return strcasecmp($this->power, MusiccastConstants::POWER_OFF) === 0;
+    }
+
+    /**
+     * Returns true if the current zone is powered-on
+     *
+     * @return boolean
+     */
+    public function isPoweredOn(): bool
+    {
+        return strcasecmp($this->power, MusiccastConstants::POWER_ON) === 0;
+    }
 }

@@ -15,6 +15,7 @@ use horstoeko\musiccast\models\MusiccastBaseModelWithReturnCode;
 use horstoeko\musiccast\transformers\MusiccastDeviceInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastLocationInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastDeviceFeatureTransformer;
+use horstoeko\musiccast\transformers\MusiccastTunerPlayinfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastTunerPresetInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastNetUsbPresetInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastDeviceFeatureZoneTransformer;
@@ -105,6 +106,7 @@ class MusiccastConnection
         $this->jsonDecoder->register(new MusiccastTunerPresetInfoTransformer());
         $this->jsonDecoder->register(new MusiccastNetUsbPresetInfoTransformer());
         $this->jsonDecoder->register(new MusiccastLocationInfoTransformer());
+        $this->jsonDecoder->register(new MusiccastTunerPlayinfoTransformer());
     }
 
     /**

@@ -12,7 +12,7 @@ namespace horstoeko\musiccast\operators;
 use horstoeko\musiccast\MusiccastConnection;
 use horstoeko\musiccast\utils\MusiccastValidation;
 use horstoeko\musiccast\models\MusiccastNetUsbPresetInfoModel;
-use horstoeko\musiccast\models\MusiccastRecallNetUsbPresetModel;
+use horstoeko\musiccast\models\MusiccastNetUsbRecallPresetModel;
 
 /**
  * Class representing the base operator
@@ -61,15 +61,15 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      *
      * @param string $newBand
      * @param integer $newNumber
-     * @return MusiccastRecallNetUsbPresetModel
+     * @return MusiccastNetUsbRecallPresetModel
      */
-    public function recallNetUsbPreset(int $newNumber): MusiccastRecallNetUsbPresetModel
+    public function recallNetUsbPreset(int $newNumber): MusiccastNetUsbRecallPresetModel
     {
         $deviceFeature = $this->musiccastOperatorSystem->getDeviceFeatures();
 
         MusiccastValidation::testIntValueBetween($newNumber, 1, $deviceFeature->netusb->preset->num);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/recallPreset?zone={$this->musiccastConnection->getZone()}&num={$newNumber}", MusiccastRecallNetUsbPresetModel::class);
+        $responseObject = $this->musiccastConnection->requestGet("netusb/recallPreset?zone={$this->musiccastConnection->getZone()}&num={$newNumber}", MusiccastNetUsbRecallPresetModel::class);
 
         return $responseObject;
     }
