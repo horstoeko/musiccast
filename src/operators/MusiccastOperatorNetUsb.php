@@ -11,6 +11,7 @@ namespace horstoeko\musiccast\operators;
 
 use horstoeko\musiccast\MusiccastConnection;
 use horstoeko\musiccast\utils\MusiccastValidation;
+use horstoeko\musiccast\models\MusiccastNetUsbPlayinfoModel;
 use horstoeko\musiccast\models\MusiccastNetUsbPresetInfoModel;
 use horstoeko\musiccast\models\MusiccastNetUsbRecallPresetModel;
 
@@ -52,6 +53,18 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
     public function getNetUsbPresets(): MusiccastNetUsbPresetInfoModel
     {
         $responseObject = $this->musiccastConnection->requestGet("netusb/getPresetInfo", MusiccastNetUsbPresetInfoModel::class);
+
+        return $responseObject;
+    }
+
+    /**
+     * Retrieve playback information
+     *
+     * @return MusiccastNetUsbPlayinfoModel
+     */
+    public function getTunerPlayInfo(): MusiccastNetUsbPlayinfoModel
+    {
+        $responseObject = $this->musiccastConnection->requestGet("netusb/getPlayInfo", MusiccastNetUsbPlayinfoModel::class);
 
         return $responseObject;
     }

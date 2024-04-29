@@ -150,8 +150,6 @@ if ($zoneStatus->isPoweredOn()) {
 
 $tunerPlayInfo = $musiccastOperatorTuner->getTunerPlayInfo();
 
-var_dump($tunerPlayInfo);
-
 foreach ([MusiccastConstants::TUNER_BAND_AM, MusiccastConstants::TUNER_BAND_FM, MusiccastConstants::TUNER_BAND_DAB] as $tunerBand) {
     $presetInfo = array_filter($musiccastOperatorTuner->getTunerPresets($tunerBand)->presetInfo, function (MusiccastTunerPresetInfoItemModel $item) {
         return $item->number > 0;
@@ -173,6 +171,15 @@ foreach ([MusiccastConstants::TUNER_BAND_AM, MusiccastConstants::TUNER_BAND_FM, 
     }
     writeTableDelimiter(40);
 }
+
+
+/**
+ * NetUsb
+ */
+
+$netUsbPlayInfo = $musiccastOperatorNetUsb->getTunerPlayInfo();
+var_dump($netUsbPlayInfo);
+
 
 /**
  * After output
