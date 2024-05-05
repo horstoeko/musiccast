@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the response of the recallPreset (net/usb)
+ * Class representing the response of the getSettings (Net/Usb)
  *
  * @category MusicCast
  * @package  MusicCast
@@ -18,6 +18,13 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastNetUsbRecallPresetModel extends MusiccastBaseModelWithReturnCode
+class MusiccastNetUsbSettingsModel extends MusiccastBaseModelWithReturnCode
 {
+    /**
+     * Information related to Qobuz.
+     * Retrievable only when products are equipped with Qobuz functions
+     *
+     * @var \horstoeko\musiccast\models\MusiccastNetUsbSettingsQobuzModel
+     */
+    public $qobuz = null;
 }

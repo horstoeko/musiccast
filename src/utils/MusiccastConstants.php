@@ -41,4 +41,13 @@ class MusiccastConstants
     public const NETUSB_FAST_REVERSE_END = "fast_reverse_end";
     public const NETUSB_FAST_FORWARD_START = "fast_forward_start";
     public const NETUSB_FAST_FORWARD_END = "fast_forward_end";
+
+    public const NETUSB_REPEAT_OFF = "off";
+    public const NETUSB_REPEAT_ONE = "one";
+    public const NETUSB_REPEAT_ALL = "all";
+
+    public const NETUSB_SHUFFLE_OFF = "off";
+    public const NETUSB_SHUFFLE_ON = "on";
+    public const NETUSB_SHUFFLE_SONGS = "songs";
+    public const NETUSB_SHUFFLE_ALBUMS = "albums";
 }

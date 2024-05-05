@@ -16,12 +16,16 @@ use horstoeko\musiccast\transformers\MusiccastDeviceInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastLocationInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastDeviceFeatureTransformer;
 use horstoeko\musiccast\transformers\MusiccastTunerPlayinfoTransformer;
+use horstoeko\musiccast\transformers\MusiccastNetUsbSettingsTransformer;
 use horstoeko\musiccast\transformers\MusiccastTunerPresetInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastNetUsbPresetInfoTransformer;
+use horstoeko\musiccast\transformers\MusiccastNetUsbRecentInfoTransformer;
 use horstoeko\musiccast\transformers\MusiccastDeviceFeatureZoneTransformer;
 use horstoeko\musiccast\transformers\MusiccastDeviceFeatureTunerTransformer;
 use horstoeko\musiccast\transformers\MusiccastDeviceFeatureNetUsbTransformer;
 use horstoeko\musiccast\transformers\MusiccastDeviceFeatureSystemTransformer;
+use horstoeko\musiccast\transformers\MusiccastNetUsbSettingsQobuzTransformer;
+use horstoeko\musiccast\transformers\MusiccastNetUsbSettingsQobuzQualityTransformer;
 
 /**
  * Class representing the device connection
@@ -109,6 +113,10 @@ class MusiccastConnection
         $this->jsonDecoder->register(new MusiccastNetUsbPresetInfoTransformer());
         $this->jsonDecoder->register(new MusiccastLocationInfoTransformer());
         $this->jsonDecoder->register(new MusiccastTunerPlayinfoTransformer());
+        $this->jsonDecoder->register(new MusiccastNetUsbSettingsTransformer());
+        $this->jsonDecoder->register(new MusiccastNetUsbSettingsQobuzTransformer());
+        $this->jsonDecoder->register(new MusiccastNetUsbSettingsQobuzQualityTransformer());
+        $this->jsonDecoder->register(new MusiccastNetUsbRecentInfoTransformer());
     }
 
     /**

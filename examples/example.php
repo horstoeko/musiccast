@@ -120,6 +120,7 @@ writeDelimiter();
 
 $zoneStatus = $musiccastOperatorZone->getStatus();
 
+/*
 if ($zoneStatus->isPoweredOn()) {
     $musiccastOperatorZone->setVolume(70);
 
@@ -139,6 +140,7 @@ if ($zoneStatus->isPoweredOn()) {
     writeLn("Volume ................ " . $zoneStatus->volume);
     writeDelimiter();
 }
+*/
 
 // $musiccastOperatorZone->setVolumeDown();
 // $musiccastOperatorZone->setMute();
@@ -148,6 +150,7 @@ if ($zoneStatus->isPoweredOn()) {
  * Tuner
  */
 
+/*
 $tunerPlayInfo = $musiccastOperatorTuner->getPlayInfo();
 
 foreach ([MusiccastConstants::TUNER_BAND_AM, MusiccastConstants::TUNER_BAND_FM, MusiccastConstants::TUNER_BAND_DAB] as $tunerBand) {
@@ -171,8 +174,7 @@ foreach ([MusiccastConstants::TUNER_BAND_AM, MusiccastConstants::TUNER_BAND_FM, 
     }
     writeTableDelimiter(40);
 }
-
-var_dump($tunerPlayInfo);
+*/
 
 
 /**
@@ -180,8 +182,9 @@ var_dump($tunerPlayInfo);
  */
 
 $netUsbPlayInfo = $musiccastOperatorNetUsb->getPlayInfo();
-var_dump($netUsbPlayInfo);
+$netUsbSettings = $musiccastOperatorNetUsb->getSettings();
 
+var_dump($musiccastOperatorNetUsb->getRecentInfo());
 
 /**
  * After output
