@@ -40,7 +40,7 @@ class MusiccastConfiguration
     /**
      * Set the devives hostname or IP
      *
-     * @param string $newHostnameOrIp
+     * @param  string $newHostnameOrIp
      * @return void
      */
     public function setHostNameOrIp(string $newHostnameOrIp): void

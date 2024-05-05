@@ -25,8 +25,8 @@ class MusiccastValidation
     /**
      * Check eleemnt exists in items
      *
-     * @param array $allowedItems
-     * @param mixed $value
+     * @param  array $allowedItems
+     * @param  mixed $value
      * @return void
      */
     public static function testInArray(array $allowedItems, $value): void
@@ -43,9 +43,9 @@ class MusiccastValidation
     /**
      * Check if $value is between $min and $max
      *
-     * @param integer $value
-     * @param integer $min
-     * @param integer $max
+     * @param  integer $value
+     * @param  integer $min
+     * @param  integer $max
      * @return void
      */
     public static function testIntValueBetween(int $value, int $min, int $max): void
@@ -60,8 +60,8 @@ class MusiccastValidation
     /**
      * Check if $values equals to $equalsTo
      *
-     * @param integer $value
-     * @param integer $equalsTo
+     * @param  integer $value
+     * @param  integer $equalsTo
      * @return void
      */
     public static function testIntValueEquals(int $value, int $equalsTo): void
@@ -76,8 +76,8 @@ class MusiccastValidation
     /**
      * Check if $values equals to $equalsTo
      *
-     * @param string $value
-     * @param string $equalsTo
+     * @param  string $value
+     * @param  string $equalsTo
      * @return void
      */
     public static function testStringValueEquals(string $value, string $equalsTo): void

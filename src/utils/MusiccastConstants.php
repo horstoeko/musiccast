@@ -30,4 +30,15 @@ class MusiccastConstants
     public const TUNER_BAND_AM = "am";
     public const TUNER_BAND_FM = "fm";
     public const TUNER_BAND_DAB = "dab";
+
+    public const NETUSB_PLAY = "play";
+    public const NETUSB_STOP = "stop";
+    public const NETUSB_PAUSE = "pause";
+    public const NETUSB_PLAY_PAUSE = "play_pause";
+    public const NETUSB_PREVIOUS = "previous";
+    public const NETUSB_NEXT = "next";
+    public const NETUSB_FAST_REVERSE_START = "fast_reverse_start";
+    public const NETUSB_FAST_REVERSE_END = "fast_reverse_end";
+    public const NETUSB_FAST_FORWARD_START = "fast_forward_start";
+    public const NETUSB_FAST_FORWARD_END = "fast_forward_end";
 }

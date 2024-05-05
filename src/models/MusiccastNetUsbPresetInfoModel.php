@@ -42,14 +42,16 @@ class MusiccastNetUsbPresetInfoModel extends MusiccastBaseModelWithReturnCode
      * Find the first matching preset index by the preset text
      * If nothing is found false is returned
      *
-     * @param string $newText
+     * @param  string $newText
      * @return integer|boolean
      */
     public function getIndexByText(string $newText)
     {
-        $arr = array_filter($this->presetInfo, function (MusiccastNetUsbPresetInfoItemModel $item) use ($newText) {
-            return strcasecmp(trim($item->text), trim($newText)) === 0;
-        });
+        $arr = array_filter(
+            $this->presetInfo, function (MusiccastNetUsbPresetInfoItemModel $item) use ($newText) {
+                return strcasecmp(trim($item->text), trim($newText)) === 0;
+            }
+        );
 
         if (reset($arr) === false) {
             return false;

@@ -42,14 +42,16 @@ class MusiccastTunerPresetInfoModel extends MusiccastBaseModelWithReturnCode
      * Find the first matching preset index by the preset text
      * If nothing is found false is returned
      *
-     * @param string $newText
+     * @param  string $newText
      * @return integer|boolean
      */
     public function getIndexByText(string $newText)
     {
-        $arr = array_filter($this->presetInfo, function (MusiccastTunerPresetInfoItemModel $item) use ($newText) {
-            return strcasecmp(trim($item->text), trim($newText)) === 0;
-        });
+        $arr = array_filter(
+            $this->presetInfo, function (MusiccastTunerPresetInfoItemModel $item) use ($newText) {
+                return strcasecmp(trim($item->text), trim($newText)) === 0;
+            }
+        );
 
         if (reset($arr) === false) {
             return false;
@@ -66,14 +68,16 @@ class MusiccastTunerPresetInfoModel extends MusiccastBaseModelWithReturnCode
      *
      * If nothing is found false is returned
      *
-     * @param integer $newNumber
+     * @param  integer $newNumber
      * @return integer|boolean
      */
     public function getIndexByNumber(int $newNumber)
     {
-        $arr = array_filter($this->presetInfo, function (MusiccastTunerPresetInfoItemModel $item) use ($newNumber) {
-            return $item->number === $newNumber;
-        });
+        $arr = array_filter(
+            $this->presetInfo, function (MusiccastTunerPresetInfoItemModel $item) use ($newNumber) {
+                return $item->number === $newNumber;
+            }
+        );
 
         if (reset($arr) === false) {
             return false;

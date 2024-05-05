@@ -51,16 +51,18 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
     /**
      * Get tuner presets
      *
-     * @param string $newBand
+     * @param  string $newBand
      * @return MusiccastTunerPresetInfoModel
      */
-    public function getTunerPresets(string $newBand): MusiccastTunerPresetInfoModel
+    public function getPresets(string $newBand): MusiccastTunerPresetInfoModel
     {
-        MusiccastValidation::testInArray([
+        MusiccastValidation::testInArray(
+            [
             MusiccastConstants::TUNER_BAND_AM,
             MusiccastConstants::TUNER_BAND_FM,
             MusiccastConstants::TUNER_BAND_DAB
-        ], $newBand);
+            ], $newBand
+        );
 
         $responseObject = $this->musiccastConnection->requestGet("tuner/getPresetInfo?band={$newBand}", MusiccastTunerPresetInfoModel::class);
 
@@ -72,9 +74,9 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
      *
      * @return MusiccastTunerPresetInfoModel
      */
-    public function getTunerPresetsForAmBand(): MusiccastTunerPresetInfoModel
+    public function getPresetsForAmBand(): MusiccastTunerPresetInfoModel
     {
-        return $this->getTunerPresets(MusiccastConstants::TUNER_BAND_AM);
+        return $this->getPresets(MusiccastConstants::TUNER_BAND_AM);
     }
 
     /**
@@ -82,9 +84,9 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
      *
      * @return MusiccastTunerPresetInfoModel
      */
-    public function getTunerPresetsForFmBand(): MusiccastTunerPresetInfoModel
+    public function getPresetsForFmBand(): MusiccastTunerPresetInfoModel
     {
-        return $this->getTunerPresets(MusiccastConstants::TUNER_BAND_FM);
+        return $this->getPresets(MusiccastConstants::TUNER_BAND_FM);
     }
 
     /**
@@ -92,9 +94,9 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
      *
      * @return MusiccastTunerPresetInfoModel
      */
-    public function getTunerPresetsForDabBand(): MusiccastTunerPresetInfoModel
+    public function getPresetsForDabBand(): MusiccastTunerPresetInfoModel
     {
-        return $this->getTunerPresets(MusiccastConstants::TUNER_BAND_DAB);
+        return $this->getPresets(MusiccastConstants::TUNER_BAND_DAB);
     }
 
     /**
@@ -102,7 +104,7 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
      *
      * @return MusiccastTunerPlayinfoModel
      */
-    public function getTunerPlayInfo(): MusiccastTunerPlayinfoModel
+    public function getPlayInfo(): MusiccastTunerPlayinfoModel
     {
         $responseObject = $this->musiccastConnection->requestGet("tuner/getPlayInfo", MusiccastTunerPlayinfoModel::class);
 
@@ -112,17 +114,19 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
     /**
      * Set tuner band
      *
-     * @param string $newBand
+     * @param  string $newBand
      * Valid: "am", "fm", "dab"
      * @return MusiccastTunerSetBandModel
      */
-    public function setTunerBand(string $newBand): MusiccastTunerSetBandModel
+    public function setBand(string $newBand): MusiccastTunerSetBandModel
     {
-        MusiccastValidation::testInArray([
+        MusiccastValidation::testInArray(
+            [
             MusiccastConstants::TUNER_BAND_AM,
             MusiccastConstants::TUNER_BAND_FM,
             MusiccastConstants::TUNER_BAND_DAB
-        ], $newBand);
+            ], $newBand
+        );
 
         $responseObject = $this->musiccastConnection->requestGet("tuner/setBand?band={$newBand}", MusiccastTunerSetBandModel::class);
 
@@ -132,16 +136,18 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
     /**
      * Set Tuner frequenc (only valid for band am or fm)
      *
-     * @param string $newBand
-     * @param integer $unit
+     * @param  string  $newBand
+     * @param  integer $unit
      * @return MusiccastTunerSetFreqModel
      */
-    public function setTunerFrequency(string $newBand, int $unit): MusiccastTunerSetFreqModel
+    public function setFrequency(string $newBand, int $unit): MusiccastTunerSetFreqModel
     {
-        MusiccastValidation::testInArray([
+        MusiccastValidation::testInArray(
+            [
             MusiccastConstants::TUNER_BAND_AM,
             MusiccastConstants::TUNER_BAND_FM
-        ], $newBand);
+            ], $newBand
+        );
 
         $responseObject = $this->musiccastConnection->requestGet("tuner/setFreq?band={$newBand}&tuning=direct&num={$unit}", MusiccastTunerSetFreqModel::class);
 
@@ -151,19 +157,21 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
     /**
      * Recall a tuner preset
      *
-     * @param string $newBand
-     * @param integer $newNumber
+     * @param  string  $newBand
+     * @param  integer $newNumber
      * @return MusiccastTunerRecallPresetModel
      */
-    public function recallTunerPreset(string $newBand, int $newNumber): MusiccastTunerRecallPresetModel
+    public function recallPreset(string $newBand, int $newNumber): MusiccastTunerRecallPresetModel
     {
         $deviceFeature = $this->musiccastOperatorSystem->getDeviceFeatures();
 
-        MusiccastValidation::testInArray([
+        MusiccastValidation::testInArray(
+            [
             MusiccastConstants::TUNER_BAND_AM,
             MusiccastConstants::TUNER_BAND_FM,
             MusiccastConstants::TUNER_BAND_DAB
-        ], $newBand);
+            ], $newBand
+        );
 
         MusiccastValidation::testIntValueBetween($newNumber, 1, $deviceFeature->tuner->preset->num);
 

@@ -116,7 +116,7 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      * - uncompressed
      *
      * @var string[]
-    */
+     */
     public $linkAudioQualityList = [];
 
     /**
@@ -210,13 +210,15 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
     /**
      * Get a zone definition by it's id
      *
-     * @param string $searchForId
+     * @param  string $searchForId
      * @return MusiccastDeviceFeatureRangeModel|null
      */
     public function getRangeStepById(string $searchForId): ?MusiccastDeviceFeatureRangeModel
     {
-        return array_reduce($this->rangeStep, static function ($carry, MusiccastDeviceFeatureRangeModel $rangeStep) use ($searchForId) {
-            return $carry ?? ($rangeStep->id === $searchForId ? $rangeStep : $carry);
-        }, null);
+        return array_reduce(
+            $this->rangeStep, static function ($carry, MusiccastDeviceFeatureRangeModel $rangeStep) use ($searchForId) {
+                return $carry ?? ($rangeStep->id === $searchForId ? $rangeStep : $carry);
+            }, null
+        );
     }
 }

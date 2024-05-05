@@ -64,7 +64,7 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Helper method for Power-on-Off-Toggle
      *
-     * @param string $operation
+     * @param  string $operation
      * @return MusiccastZonePowerModel
      */
     private function internalPowerOperation(string $operation): MusiccastZonePowerModel
@@ -109,8 +109,8 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Internal helper for setting the volume
      *
-     * @param string|integer $newVolume
-     * @param integer $newStep
+     * @param  string|integer $newVolume
+     * @param  integer        $newStep
      * @return MusiccastZoneVolumeModel
      */
     private function internalVolumeOperation($newVolume, int $newStep = 1): MusiccastZoneVolumeModel
@@ -141,8 +141,8 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Change the volume in the current zone
      *
-     * @param integer $newVolume
-     * @param integer $newStep
+     * @param  integer $newVolume
+     * @param  integer $newStep
      * @return MusiccastZoneVolumeModel
      */
     public function setVolume(int $newVolume, int $newStep = 1): MusiccastZoneVolumeModel
@@ -153,7 +153,7 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Change the volume upwards
      *
-     * @param integer $newStep
+     * @param  integer $newStep
      * @return MusiccastZoneVolumeModel
      */
     public function setVolumeUp(int $newStep = 1): MusiccastZoneVolumeModel
@@ -164,7 +164,7 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Change the volume downwards
      *
-     * @param integer $newStep
+     * @param  integer $newStep
      * @return MusiccastZoneVolumeModel
      */
     public function setVolumeDown(int $newStep = 1): MusiccastZoneVolumeModel
@@ -175,7 +175,7 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Helper-method for mute-/unmute operations
      *
-     * @param boolean $newMute
+     * @param  boolean $newMute
      * @return MusiccastZoneMuteModel
      */
     private function internalMuteOperation(bool $newMute): MusiccastZoneMuteModel
@@ -214,7 +214,7 @@ class MusiccastOperatorZone extends MusiccastOperatorBase
     /**
      * Switch/Set the device input
      *
-     * @param string $newInputName
+     * @param  string $newInputName
      * @return MusiccastZoneSetInputModel
      */
     public function setInput(string $newInputName): MusiccastZoneSetInputModel

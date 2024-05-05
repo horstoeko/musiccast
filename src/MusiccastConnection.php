@@ -82,10 +82,12 @@ class MusiccastConnection
      */
     private function createHttpClient(): void
     {
-        $this->httpClient = new Client([
+        $this->httpClient = new Client(
+            [
             'base_uri' => sprintf("http://%s/YamahaExtendedControl/v3/", $this->configuration->getHostNameOrIp()),
             'timeout' => 5.0
-        ]);
+            ]
+        );
     }
 
     /**
@@ -122,7 +124,7 @@ class MusiccastConnection
     /**
      * Set the device's zone
      *
-     * @param string $newZone
+     * @param  string $newZone
      * @return void
      */
     public function setZone(string $newZone): void
@@ -137,8 +139,8 @@ class MusiccastConnection
     /**
      * Perform GET-Request
      *
-     * @param string $uri
-     * @param string $modelClass
+     * @param  string $uri
+     * @param  string $modelClass
      * @return MusiccastBaseModelWithReturnCode
      */
     public function requestGet(string $uri, string $modelClass): MusiccastBaseModelWithReturnCode

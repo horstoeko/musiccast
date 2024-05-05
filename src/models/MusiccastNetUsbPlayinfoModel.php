@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the tuner playback info model
+ * Class representing the Net/Usb playback info model
  *
  * @category MusicCast
  * @package  MusicCast

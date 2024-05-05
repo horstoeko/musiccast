@@ -51,13 +51,15 @@ class MusiccastDeviceFeatureModel extends MusiccastBaseModelWithReturnCode
     /**
      * Get a zone definition by it's id
      *
-     * @param string $searchForId
+     * @param  string $searchForId
      * @return MusiccastDeviceFeatureZoneModel|null
      */
     public function getZoneById(string $searchForId): ?MusiccastDeviceFeatureZoneModel
     {
-        return array_reduce($this->zones, static function ($carry, MusiccastDeviceFeatureZoneModel $zone) use ($searchForId) {
-            return $carry ?? ($zone->id === $searchForId ? $zone : $carry);
-        }, null);
+        return array_reduce(
+            $this->zones, static function ($carry, MusiccastDeviceFeatureZoneModel $zone) use ($searchForId) {
+                return $carry ?? ($zone->id === $searchForId ? $zone : $carry);
+            }, null
+        );
     }
 }

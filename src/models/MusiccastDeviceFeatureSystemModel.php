@@ -63,8 +63,10 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
      */
     public function getInputIds(): array
     {
-        return array_map(function (MusiccastDeviceFeatureSystemInputModel $item) {
-            return $item->id;
-        }, $this->inputList);
+        return array_map(
+            function (MusiccastDeviceFeatureSystemInputModel $item) {
+                return $item->id;
+            }, $this->inputList
+        );
     }
 }
