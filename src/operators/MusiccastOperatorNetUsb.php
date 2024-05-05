@@ -15,6 +15,7 @@ use horstoeko\musiccast\utils\MusiccastValidation;
 use horstoeko\musiccast\models\MusiccastNetUsbRepeatModel;
 use horstoeko\musiccast\models\MusiccastNetUsbQualityModel;
 use horstoeko\musiccast\models\MusiccastNetUsbShuffleModel;
+use horstoeko\musiccast\models\MusiccastNetUsbListInfoModel;
 use horstoeko\musiccast\models\MusiccastNetUsbPlaybackModel;
 use horstoeko\musiccast\models\MusiccastNetUsbPlayinfoModel;
 use horstoeko\musiccast\models\MusiccastNetUsbSettingsModel;
@@ -513,6 +514,26 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
     public function clearRecentInfo(): MusiccastNetUsbClearRecentInfoModel
     {
         $responseObject = $this->musiccastConnection->requestGet("netusb/clearRecentInfo", MusiccastNetUsbClearRecentInfoModel::class);
+
+        return $responseObject;
+    }
+
+    /**
+     * Retrieve list information. Basically this info is available to all relevant inputs, not limited to
+     * or independent from current input
+     *
+     * @param string $newInput
+     * @param integer $newSize
+     * @return MusiccastNetUsbListInfoModel
+     */
+    public function getListInfo(string $newInput, int $newSize = 8): MusiccastNetUsbListInfoModel
+    {
+        $deviceFeature = $this->musiccastOperatorSystem->getDeviceFeatures();
+
+        MusiccastValidation::testInArray($deviceFeature->system->getInputIdsForNetUsb(), $newInput);
+        MusiccastValidation::testIntValueBetween($newSize, 1, 8);
+
+        $responseObject = $this->musiccastConnection->requestGet("netusb/getListInfo?input={$newInput}&size={$newSize}", MusiccastNetUsbListInfoModel::class);
 
         return $responseObject;
     }

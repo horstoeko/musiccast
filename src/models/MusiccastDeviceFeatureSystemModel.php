@@ -66,7 +66,36 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
         return array_map(
             function (MusiccastDeviceFeatureSystemInputModel $item) {
                 return $item->id;
-            }, $this->inputList
+            },
+            $this->inputList
         );
+    }
+
+    /**
+     * Get a list of valid input sources for Tuner
+     *
+     * @return array
+     */
+    public function getInputIdsForTuner(): array
+    {
+        return array_map(function (MusiccastDeviceFeatureSystemInputModel $item) {
+            return $item->id;
+        }, array_filter($this->inputList, function (MusiccastDeviceFeatureSystemInputModel $item) {
+            return strcasecmp($item->playInfoType, "tuner") === 0;
+        }));
+    }
+
+    /**
+     * Get a list of valid input sources for Net/Usb
+     *
+     * @return array
+     */
+    public function getInputIdsForNetUsb(): array
+    {
+        return array_map(function (MusiccastDeviceFeatureSystemInputModel $item) {
+            return $item->id;
+        }, array_filter($this->inputList, function (MusiccastDeviceFeatureSystemInputModel $item) {
+            return strcasecmp($item->playInfoType, "netusb") === 0;
+        }));
     }
 }
