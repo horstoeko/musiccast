@@ -124,7 +124,7 @@ class MusiccastDeviceFeatureZoneModel extends MusiccastBaseModel
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel[]
      */
-    public $rangeStep = null;
+    public $rangeStep = [];
 
     /**
      * Returns selectable scenes of total number. This parameter does not exist in models without a scene

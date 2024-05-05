@@ -40,14 +40,14 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureSystemInputModel[]
      */
-    public $inputList = null;
+    public $inputList = [];
 
     /**
      * Minimum/Maximum/Step values of a parameter
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel[]
      */
-    public $rangeStep = null;
+    public $rangeStep = [];
 
     /**
      * Web Control URL

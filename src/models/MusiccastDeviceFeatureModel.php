@@ -32,7 +32,7 @@ class MusiccastDeviceFeatureModel extends MusiccastBaseModelWithReturnCode
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureZoneModel[]
      */
-    public $zones = null;
+    public $zones = [];
 
     /**
      * Information related to Tuner function

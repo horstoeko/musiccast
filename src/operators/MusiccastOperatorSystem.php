@@ -9,9 +9,12 @@
 
 namespace horstoeko\musiccast\operators;
 
-use horstoeko\musiccast\models\MusiccastLocationInfoModel;
+use horstoeko\musiccast\utils\MusiccastValidation;
 use horstoeko\musiccast\models\MusiccastDeviceInfoModel;
+use horstoeko\musiccast\models\MusiccastLocationInfoModel;
+use horstoeko\musiccast\models\MusiccastSystemRebootModel;
 use horstoeko\musiccast\models\MusiccastDeviceFeatureModel;
+use horstoeko\musiccast\models\MusiccastSystemNetworkRebootModel;
 
 /**
  * Class representing the system operator
@@ -56,6 +59,38 @@ class MusiccastOperatorSystem extends MusiccastOperatorBase
     public function getLocationInfo(): MusiccastLocationInfoModel
     {
         $responseObject = $this->musiccastConnection->requestGet('system/getLocationInfo', MusiccastLocationInfoModel::class);
+
+        return $responseObject;
+    }
+
+    /**
+     * Request Network module reboot. Available only when "network_reboot" exists in system - func_list under /system/getFeatures.
+     *
+     * @return MusiccastSystemNetworkRebootModel
+     */
+    public function rebootNetwork(): MusiccastSystemNetworkRebootModel
+    {
+        $allowedFunctions = $this->getDeviceFeatures()->system->funcList;
+
+        MusiccastValidation::testInArray($allowedFunctions, "network_reboot");
+
+        $responseObject = $this->musiccastConnection->requestGet('system/requestNetworkReboot', MusiccastSystemNetworkRebootModel::class);
+
+        return $responseObject;
+    }
+
+    /**
+     * equest System reboot. Available only when " system_reboot " exists in system - func_list under /system/getFeatures
+     *
+     * @return MusiccastSystemRebootModel
+     */
+    public function rebootSystem(): MusiccastSystemRebootModel
+    {
+        $allowedFunctions = $this->getDeviceFeatures()->system->funcList;
+
+        MusiccastValidation::testInArray($allowedFunctions, "system_reboot");
+
+        $responseObject = $this->musiccastConnection->requestGet('system/requestNetworkReboot', MusiccastSystemRebootModel::class);
 
         return $responseObject;
     }

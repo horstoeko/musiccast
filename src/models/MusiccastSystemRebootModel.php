@@ -10,7 +10,7 @@
 namespace horstoeko\musiccast\models;
 
 /**
- * Class representing the Net/Usb recent info (getRecentInfo)
+ * Class representing the response of the requestNetworkReboot (System)
  *
  * @category MusicCast
  * @package  MusicCast
@@ -18,12 +18,6 @@ namespace horstoeko\musiccast\models;
  * @license  https://opensource.org/licenses/MIT MIT
  * @link     https://github.com/horstoeko/musiccast
  */
-class MusiccastNetUsbRecentInfoModel extends MusiccastBaseModelWithReturnCode
+class MusiccastSystemRebootModel extends MusiccastBaseModelWithReturnCode
 {
-    /**
-     * playback history. Element number of an array can be gotten via system/getFeatures
-     *
-     * @var \horstoeko\musiccast\models\MusiccastNetUsbRecentInfoItemModel[]
-     */
-    public $recentInfo = [];
 }

@@ -39,7 +39,7 @@ class MusiccastLocationInfoModel extends MusiccastBaseModelWithReturnCode
      *
      * @var \horstoeko\musiccast\models\MusiccastLocationInfoZonelistModel[]
      */
-    public $zoneList = null;
+    public $zoneList = [];
 
     /**
      * Returns Stereo Pair setting status

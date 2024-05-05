@@ -184,8 +184,6 @@ foreach ([MusiccastConstants::TUNER_BAND_AM, MusiccastConstants::TUNER_BAND_FM, 
 $netUsbPlayInfo = $musiccastOperatorNetUsb->getPlayInfo();
 $netUsbSettings = $musiccastOperatorNetUsb->getSettings();
 
-var_dump($musiccastOperatorNetUsb->getRecentInfo());
-
 /**
  * After output
  */
