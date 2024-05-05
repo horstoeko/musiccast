@@ -73,7 +73,7 @@ class MusiccastNetUsbListInfoModel extends MusiccastBaseModelWithReturnCode
      * max row number is reached in the middle of this list info, the list ends at
      * the max row.
      *
-     * @var \horstoeko\musiccast\models\MusiccastNetUsbListInfoItemModel
+     * @var \horstoeko\musiccast\models\MusiccastNetUsbListInfoItemModel[]
      */
     public $listInfo = [];
 }

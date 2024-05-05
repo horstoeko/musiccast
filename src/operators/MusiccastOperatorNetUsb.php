@@ -27,6 +27,7 @@ use horstoeko\musiccast\models\MusiccastNetUsbRecallRecentItem;
 use horstoeko\musiccast\models\MusiccastNetUsbStorePresetModel;
 use horstoeko\musiccast\models\MusiccastNetUsbPlayPositionModel;
 use horstoeko\musiccast\models\MusiccastNetUsbRecallPresetModel;
+use horstoeko\musiccast\models\MusiccastNetUsbSetListControlModel;
 use horstoeko\musiccast\models\MusiccastNetUsbClearRecentInfoModel;
 
 /**
@@ -523,18 +524,82 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      * or independent from current input
      *
      * @param string $newInput
+     * @param integer $newIndex
      * @param integer $newSize
      * @return MusiccastNetUsbListInfoModel
      */
-    public function getListInfo(string $newInput, int $newSize = 8): MusiccastNetUsbListInfoModel
+    public function getListInfo(string $newInput, int $newIndex = 0, int $newSize = 8): MusiccastNetUsbListInfoModel
     {
         $deviceFeature = $this->musiccastOperatorSystem->getDeviceFeatures();
 
         MusiccastValidation::testInArray($deviceFeature->system->getInputIdsForNetUsb(), $newInput);
         MusiccastValidation::testIntValueBetween($newSize, 1, 8);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/getListInfo?input={$newInput}&size={$newSize}", MusiccastNetUsbListInfoModel::class);
+        $responseObject = $this->musiccastConnection->requestGet("netusb/getListInfo?input={$newInput}&index={$newIndex}&size={$newSize}", MusiccastNetUsbListInfoModel::class);
 
         return $responseObject;
+    }
+
+    /**
+     * Helper method to Control a list. Controllable list info is not limited to or independent from current in
+     *
+     * @param string $newType
+     * @param integer $newIndex
+     * @return MusiccastNetUsbSetListControlModel
+     */
+    private function internalSetListControl(string $newType, int $newIndex): MusiccastNetUsbSetListControlModel
+    {
+        MusiccastValidation::testInArray([
+            MusiccastConstants::NETUSB_SETLISTCTRL_PLAY,
+            MusiccastConstants::NETUSB_SETLISTCTRL_RETURN,
+            MusiccastConstants::NETUSB_SETLISTCTRL_SELECT,
+        ], $newType);
+
+        switch ($newType) {
+            case MusiccastConstants::NETUSB_SETLISTCTRL_SELECT:
+                $responseObject = $this->musiccastConnection->requestGet("netusb/setListControl?type={$newType}&index={$newIndex}", MusiccastNetUsbSetListControlModel::class);
+                break;
+            case MusiccastConstants::NETUSB_SETLISTCTRL_PLAY:
+                $responseObject = $this->musiccastConnection->requestGet("netusb/setListControl?type={$newType}&index={$newIndex}", MusiccastNetUsbSetListControlModel::class);
+                break;
+            case MusiccastConstants::NETUSB_SETLISTCTRL_RETURN:
+                $responseObject = $this->musiccastConnection->requestGet("netusb/setListControl?type={$newType}", MusiccastNetUsbSetListControlModel::class);
+                break;
+        }
+
+        return $responseObject;
+    }
+
+    /**
+     * Select a list item
+     *
+     * @param integer $newIndex
+     * @return MusiccastNetUsbSetListControlModel
+     */
+    public function setListControlSelect(int $newIndex): MusiccastNetUsbSetListControlModel
+    {
+        return $this->internalSetListControl(MusiccastConstants::NETUSB_SETLISTCTRL_SELECT, $newIndex);
+    }
+
+    /**
+     * Play a list item
+     *
+     * @param integer $newIndex
+     * @return MusiccastNetUsbSetListControlModel
+     */
+    public function setListControlPlay(int $newIndex): MusiccastNetUsbSetListControlModel
+    {
+        return $this->internalSetListControl(MusiccastConstants::NETUSB_SETLISTCTRL_PLAY, $newIndex);
+    }
+
+    /**
+     * Return to parent list level
+     *
+     * @param integer $newIndex
+     * @return MusiccastNetUsbSetListControlModel
+     */
+    public function setListControlReturn(): MusiccastNetUsbSetListControlModel
+    {
+        return $this->internalSetListControl(MusiccastConstants::NETUSB_SETLISTCTRL_RETURN, -1);
     }
 }

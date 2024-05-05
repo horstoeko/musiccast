@@ -50,4 +50,8 @@ class MusiccastConstants
     public const NETUSB_SHUFFLE_ON = "on";
     public const NETUSB_SHUFFLE_SONGS = "songs";
     public const NETUSB_SHUFFLE_ALBUMS = "albums";
+
+    public const NETUSB_SETLISTCTRL_SELECT = "select";
+    public const NETUSB_SETLISTCTRL_PLAY = "play";
+    public const NETUSB_SETLISTCTRL_RETURN = "return";
 }
