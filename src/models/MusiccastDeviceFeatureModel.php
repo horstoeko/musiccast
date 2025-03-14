@@ -25,7 +25,7 @@ class MusiccastDeviceFeatureModel extends MusiccastBaseModelWithReturnCode
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureSystemModel
      */
-    public $system = null;
+    public $system;
 
     /**
      * Zone related information
@@ -39,14 +39,14 @@ class MusiccastDeviceFeatureModel extends MusiccastBaseModelWithReturnCode
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureTunerModel
      */
-    public $tuner = null;
+    public $tuner;
 
     /**
      * Information related to Net/USB function
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbModel
      */
-    public $netusb = null;
+    public $netusb;
 
     /**
      * Get a zone definition by it's id

@@ -34,9 +34,7 @@ class MusiccastOperatorSystem extends MusiccastOperatorBase
      */
     public function getDeviceInfo(): MusiccastDeviceInfoModel
     {
-        $responseObject = $this->musiccastConnection->requestGet('system/getDeviceInfo', MusiccastDeviceInfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('system/getDeviceInfo', MusiccastDeviceInfoModel::class);
     }
 
     /**
@@ -46,9 +44,7 @@ class MusiccastOperatorSystem extends MusiccastOperatorBase
      */
     public function getDeviceFeatures(): MusiccastDeviceFeatureModel
     {
-        $responseObject = $this->musiccastConnection->requestGet('system/getFeatures', MusiccastDeviceFeatureModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('system/getFeatures', MusiccastDeviceFeatureModel::class);
     }
 
     /**
@@ -58,9 +54,7 @@ class MusiccastOperatorSystem extends MusiccastOperatorBase
      */
     public function getLocationInfo(): MusiccastLocationInfoModel
     {
-        $responseObject = $this->musiccastConnection->requestGet('system/getLocationInfo', MusiccastLocationInfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('system/getLocationInfo', MusiccastLocationInfoModel::class);
     }
 
     /**
@@ -74,9 +68,7 @@ class MusiccastOperatorSystem extends MusiccastOperatorBase
 
         MusiccastValidation::testInArray($allowedFunctions, "network_reboot");
 
-        $responseObject = $this->musiccastConnection->requestGet('system/requestNetworkReboot', MusiccastSystemNetworkRebootModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('system/requestNetworkReboot', MusiccastSystemNetworkRebootModel::class);
     }
 
     /**
@@ -90,8 +82,6 @@ class MusiccastOperatorSystem extends MusiccastOperatorBase
 
         MusiccastValidation::testInArray($allowedFunctions, "system_reboot");
 
-        $responseObject = $this->musiccastConnection->requestGet('system/requestNetworkReboot', MusiccastSystemRebootModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('system/requestNetworkReboot', MusiccastSystemRebootModel::class);
     }
 }

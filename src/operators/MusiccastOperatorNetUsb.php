@@ -46,7 +46,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      *
      * @var MusiccastOperatorSystem;
      */
-    protected $musiccastOperatorSystem = null;
+    protected $musiccastOperatorSystem;
 
     /**
      * Constructor
@@ -67,9 +67,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      */
     public function getPresets(): MusiccastNetUsbPresetInfoModel
     {
-        $responseObject = $this->musiccastConnection->requestGet("netusb/getPresetInfo", MusiccastNetUsbPresetInfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("netusb/getPresetInfo", MusiccastNetUsbPresetInfoModel::class);
     }
 
     /**
@@ -79,9 +77,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      */
     public function getPlayInfo(): MusiccastNetUsbPlayinfoModel
     {
-        $responseObject = $this->musiccastConnection->requestGet("netusb/getPlayInfo", MusiccastNetUsbPlayinfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("netusb/getPlayInfo", MusiccastNetUsbPlayinfoModel::class);
     }
 
     /**
@@ -108,9 +104,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
             $newPlayback
         );
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/setPlayback?playback=$newPlayback", MusiccastNetUsbPlayinfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('netusb/setPlayback?playback=' . $newPlayback, MusiccastNetUsbPlayinfoModel::class);
     }
 
     /**
@@ -225,9 +219,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
 
         MusiccastValidation::testIntValueBetween($newPosition, 0, $playInfo->totalTime);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/setPlayPosition?position=$newPosition", MusiccastNetUsbPlayPositionModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('netusb/setPlayPosition?position=' . $newPosition, MusiccastNetUsbPlayPositionModel::class);
     }
 
     /**
@@ -247,9 +239,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
             $newMode
         );
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/setRepeat?mode=$newMode", MusiccastNetUsbRepeatModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('netusb/setRepeat?mode=' . $newMode, MusiccastNetUsbRepeatModel::class);
     }
 
     /**
@@ -289,9 +279,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      */
     public function toggleRepeat(): MusiccastNetUsbRepeatModel
     {
-        $responseObject = $this->musiccastConnection->requestGet("netusb/toggleRepeat", MusiccastNetUsbRepeatModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("netusb/toggleRepeat", MusiccastNetUsbRepeatModel::class);
     }
 
     /**
@@ -312,9 +300,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
             $newMode
         );
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/setShuffle?mode=$newMode", MusiccastNetUsbShuffleModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('netusb/setShuffle?mode=' . $newMode, MusiccastNetUsbShuffleModel::class);
     }
 
     /**
@@ -364,9 +350,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      */
     public function toggleShuffle(): MusiccastNetUsbRepeatModel
     {
-        $responseObject = $this->musiccastConnection->requestGet("netusb/toggleShuffle", MusiccastNetUsbRepeatModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("netusb/toggleShuffle", MusiccastNetUsbRepeatModel::class);
     }
 
     /**
@@ -382,9 +366,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
 
         MusiccastValidation::testIntValueBetween($newNumber, 1, $deviceFeature->netusb->preset->num);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/recallPreset?zone={$this->musiccastConnection->getZone()}&num={$newNumber}", MusiccastNetUsbRecallPresetModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet(sprintf('netusb/recallPreset?zone=%s&num=%d', $this->musiccastConnection->getZone(), $newNumber), MusiccastNetUsbRecallPresetModel::class);
     }
 
     /**
@@ -401,9 +383,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
 
         MusiccastValidation::testIntValueBetween($newNumber, 1, $deviceFeature->netusb->preset->num);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/storePreset?num={$newNumber}", MusiccastNetUsbStorePresetModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('netusb/storePreset?num=' . $newNumber, MusiccastNetUsbStorePresetModel::class);
     }
 
     /**
@@ -419,9 +399,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
 
         MusiccastValidation::testIntValueBetween($newNumber, 1, $deviceFeature->netusb->preset->num);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/clearPreset?num={$newNumber}", MusiccastNetUsbClearPresetModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('netusb/clearPreset?num=' . $newNumber, MusiccastNetUsbClearPresetModel::class);
     }
 
     /**
@@ -442,9 +420,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
         MusiccastValidation::testIntValueBetween($fromNumber, 1, $deviceFeature->netusb->preset->num);
         MusiccastValidation::testIntValueBetween($toNumber, 1, $deviceFeature->netusb->preset->num);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/movePreset?from={$fromNumber}&to={$toNumber}", MusiccastNetUsbMovePresetModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet(sprintf('netusb/movePreset?from=%d&to=%d', $fromNumber, $toNumber), MusiccastNetUsbMovePresetModel::class);
     }
 
     /**
@@ -454,9 +430,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      */
     public function getSettings(): MusiccastNetUsbSettingsModel
     {
-        $responseObject = $this->musiccastConnection->requestGet("netusb/getSettings", MusiccastNetUsbSettingsModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("netusb/getSettings", MusiccastNetUsbSettingsModel::class);
     }
 
     /**
@@ -469,9 +443,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
     {
         MusiccastValidation::testInArray($this->getSettings()->qobuz->quality->getAllowedQualities(), $newQuality);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/getSettings", MusiccastNetUsbQualityModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("netusb/getSettings", MusiccastNetUsbQualityModel::class);
     }
 
     /**
@@ -481,9 +453,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      */
     public function getRecentInfo(): MusiccastNetUsbRecentInfoModel
     {
-        $responseObject = $this->musiccastConnection->requestGet("netusb/getRecentInfo", MusiccastNetUsbRecentInfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("netusb/getRecentInfo", MusiccastNetUsbRecentInfoModel::class);
     }
 
     /**
@@ -502,9 +472,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
 
         MusiccastValidation::testIntValueBetween($newNumber, 1, count($recentInfo->recentInfo));
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/recallRecentItem?zone={$this->musiccastConnection->getZone()}&num={$newNumber}", MusiccastNetUsbRecallRecentItem::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet(sprintf('netusb/recallRecentItem?zone=%s&num=%d', $this->musiccastConnection->getZone(), $newNumber), MusiccastNetUsbRecallRecentItem::class);
     }
 
     /**
@@ -514,18 +482,16 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
      */
     public function clearRecentInfo(): MusiccastNetUsbClearRecentInfoModel
     {
-        $responseObject = $this->musiccastConnection->requestGet("netusb/clearRecentInfo", MusiccastNetUsbClearRecentInfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("netusb/clearRecentInfo", MusiccastNetUsbClearRecentInfoModel::class);
     }
 
     /**
      * Retrieve list information. Basically this info is available to all relevant inputs, not limited to
      * or independent from current input
      *
-     * @param string $newInput
-     * @param integer $newIndex
-     * @param integer $newSize
+     * @param  string  $newInput
+     * @param  integer $newIndex
+     * @param  integer $newSize
      * @return MusiccastNetUsbListInfoModel
      */
     public function getListInfo(string $newInput, int $newIndex = 0, int $newSize = 8): MusiccastNetUsbListInfoModel
@@ -535,36 +501,34 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
         MusiccastValidation::testInArray($deviceFeature->system->getInputIdsForNetUsb(), $newInput);
         MusiccastValidation::testIntValueBetween($newSize, 1, 8);
 
-        $responseObject = $this->musiccastConnection->requestGet("netusb/getListInfo?input={$newInput}&index={$newIndex}&size={$newSize}", MusiccastNetUsbListInfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet(sprintf('netusb/getListInfo?input=%s&index=%d&size=%d', $newInput, $newIndex, $newSize), MusiccastNetUsbListInfoModel::class);
     }
 
     /**
      * Helper method to Control a list. Controllable list info is not limited to or independent from current in
      *
-     * @param string $newType
-     * @param integer $newIndex
+     * @param  string  $newType
+     * @param  integer $newIndex
      * @return MusiccastNetUsbSetListControlModel
      */
     private function internalSetListControl(string $newType, int $newIndex): MusiccastNetUsbSetListControlModel
     {
-        MusiccastValidation::testInArray([
+        MusiccastValidation::testInArray(
+            [
             MusiccastConstants::NETUSB_SETLISTCTRL_PLAY,
             MusiccastConstants::NETUSB_SETLISTCTRL_RETURN,
             MusiccastConstants::NETUSB_SETLISTCTRL_SELECT,
-        ], $newType);
+            ], $newType
+        );
 
         switch ($newType) {
-            case MusiccastConstants::NETUSB_SETLISTCTRL_SELECT:
-                $responseObject = $this->musiccastConnection->requestGet("netusb/setListControl?type={$newType}&index={$newIndex}", MusiccastNetUsbSetListControlModel::class);
-                break;
-            case MusiccastConstants::NETUSB_SETLISTCTRL_PLAY:
-                $responseObject = $this->musiccastConnection->requestGet("netusb/setListControl?type={$newType}&index={$newIndex}", MusiccastNetUsbSetListControlModel::class);
-                break;
-            case MusiccastConstants::NETUSB_SETLISTCTRL_RETURN:
-                $responseObject = $this->musiccastConnection->requestGet("netusb/setListControl?type={$newType}", MusiccastNetUsbSetListControlModel::class);
-                break;
+        case MusiccastConstants::NETUSB_SETLISTCTRL_SELECT:
+        case MusiccastConstants::NETUSB_SETLISTCTRL_PLAY:
+            $responseObject = $this->musiccastConnection->requestGet(sprintf('netusb/setListControl?type=%s&index=%d', $newType, $newIndex), MusiccastNetUsbSetListControlModel::class);
+            break;
+        case MusiccastConstants::NETUSB_SETLISTCTRL_RETURN:
+            $responseObject = $this->musiccastConnection->requestGet('netusb/setListControl?type=' . $newType, MusiccastNetUsbSetListControlModel::class);
+            break;
         }
 
         return $responseObject;
@@ -573,7 +537,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
     /**
      * Select a list item
      *
-     * @param integer $newIndex
+     * @param  integer $newIndex
      * @return MusiccastNetUsbSetListControlModel
      */
     public function setListControlSelect(int $newIndex): MusiccastNetUsbSetListControlModel
@@ -584,7 +548,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
     /**
      * Play a list item
      *
-     * @param integer $newIndex
+     * @param  integer $newIndex
      * @return MusiccastNetUsbSetListControlModel
      */
     public function setListControlPlay(int $newIndex): MusiccastNetUsbSetListControlModel
@@ -595,7 +559,7 @@ class MusiccastOperatorNetUsb extends MusiccastOperatorBase
     /**
      * Return to parent list level
      *
-     * @param integer $newIndex
+     * @param  integer $newIndex
      * @return MusiccastNetUsbSetListControlModel
      */
     public function setListControlReturn(): MusiccastNetUsbSetListControlModel

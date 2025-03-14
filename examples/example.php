@@ -9,7 +9,7 @@ use horstoeko\musiccast\operators\MusiccastOperatorNetUsb;
 use horstoeko\musiccast\operators\MusiccastOperatorSystem;
 use horstoeko\musiccast\models\MusiccastTunerPresetInfoItemModel;
 
-require dirname(__FILE__) . "/../vendor/autoload.php";
+require __DIR__ . "/../vendor/autoload.php";
 
 /**
  * Functions
@@ -27,7 +27,7 @@ function writeNewLine(): void
 
 function writeNewLineIf(bool $condition): void
 {
-    if ($condition === true) {
+    if ($condition) {
         writeNewLine();
     }
 }
@@ -57,7 +57,7 @@ function writeTableDelimiter(int $size): void
 
 function bool2str(bool $value): string
 {
-    return $value === true ? "Yes" : "No";
+    return $value ? "Yes" : "No";
 }
 
 /**
@@ -107,7 +107,7 @@ $deviceFeatures = $musiccastOperatorSystem->getDeviceFeatures();
 $zoneStatus = $musiccastOperatorZone->getStatus();
 
 writeNewLine();
-writeLn("Zone Status for zone {$conn->getZone()}");
+writeLn('Zone Status for zone ' . $conn->getZone());
 writeDelimiter();
 writeLn("Power ................. " . $zoneStatus->power);
 writeLn("Input ................. " . $zoneStatus->input . " (" . $zoneStatus->inputText . ")");

@@ -26,5 +26,5 @@ class MusiccastNetUsbSettingsModel extends MusiccastBaseModelWithReturnCode
      *
      * @var \horstoeko\musiccast\models\MusiccastNetUsbSettingsQobuzModel
      */
-    public $qobuz = null;
+    public $qobuz;
 }

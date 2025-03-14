@@ -44,21 +44,21 @@ class MusiccastConnection
      *
      * @var \horstoeko\musiccast\MusiccastConfiguration
      */
-    private $configuration = null;
+    private $configuration;
 
     /**
      * The internal http client
      *
      * @var \GuzzleHttp\Client
      */
-    private $httpClient = null;
+    private $httpClient;
 
     /**
      * Internal composer
      *
      * @var \Karriere\JsonDecoder\JsonDecoder
      */
-    private $jsonDecoder = null;
+    private $jsonDecoder;
 
     /**
      * The current zone
@@ -139,7 +139,7 @@ class MusiccastConnection
      */
     public function setZone(string $newZone): void
     {
-        if ($newZone == "") {
+        if ($newZone === "") {
             return;
         }
 

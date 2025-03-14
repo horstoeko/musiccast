@@ -37,7 +37,7 @@ class MusiccastValidation
 
         $allowedItemsText = implode(", ", $allowedItems);
 
-        throw new InvalidArgumentException("Unknown value {$value}. Select a value from [{$allowedItemsText}]");
+        throw new InvalidArgumentException(sprintf('Unknown value %s. Select a value from [%s]', $value, $allowedItemsText));
     }
 
     /**
@@ -54,7 +54,7 @@ class MusiccastValidation
             return;
         }
 
-        throw new InvalidArgumentException("The value must be between {$min} and {$max}. Current value is {$value}");
+        throw new InvalidArgumentException(sprintf('The value must be between %d and %d. Current value is %d', $min, $max, $value));
     }
 
     /**
@@ -70,7 +70,7 @@ class MusiccastValidation
             return;
         }
 
-        throw new InvalidArgumentException("The value {$value} is not equal to {$equalsTo}");
+        throw new InvalidArgumentException(sprintf('The value %d is not equal to %d', $value, $equalsTo));
     }
 
     /**
@@ -86,6 +86,6 @@ class MusiccastValidation
             return;
         }
 
-        throw new InvalidArgumentException("The value {$value} is not equal to {$equalsTo}");
+        throw new InvalidArgumentException(sprintf('The value %s is not equal to %s', $value, $equalsTo));
     }
 }

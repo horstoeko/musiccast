@@ -78,11 +78,15 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
      */
     public function getInputIdsForTuner(): array
     {
-        return array_map(function (MusiccastDeviceFeatureSystemInputModel $item) {
-            return $item->id;
-        }, array_filter($this->inputList, function (MusiccastDeviceFeatureSystemInputModel $item) {
-            return strcasecmp($item->playInfoType, "tuner") === 0;
-        }));
+        return array_map(
+            function (MusiccastDeviceFeatureSystemInputModel $item) {
+                return $item->id;
+            }, array_filter(
+                $this->inputList, function (MusiccastDeviceFeatureSystemInputModel $item) {
+                    return strcasecmp($item->playInfoType, "tuner") === 0;
+                }
+            )
+        );
     }
 
     /**
@@ -92,10 +96,14 @@ class MusiccastDeviceFeatureSystemModel extends MusiccastBaseModel
      */
     public function getInputIdsForNetUsb(): array
     {
-        return array_map(function (MusiccastDeviceFeatureSystemInputModel $item) {
-            return $item->id;
-        }, array_filter($this->inputList, function (MusiccastDeviceFeatureSystemInputModel $item) {
-            return strcasecmp($item->playInfoType, "netusb") === 0;
-        }));
+        return array_map(
+            function (MusiccastDeviceFeatureSystemInputModel $item) {
+                return $item->id;
+            }, array_filter(
+                $this->inputList, function (MusiccastDeviceFeatureSystemInputModel $item) {
+                    return strcasecmp($item->playInfoType, "netusb") === 0;
+                }
+            )
+        );
     }
 }

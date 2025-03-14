@@ -32,28 +32,28 @@ class MusiccastDeviceFeatureNetUsbModel extends MusiccastBaseModel
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeaturePresetModel
      */
-    public $preset = null;
+    public $preset;
 
     /**
      * Returns information related to playback history
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbRecentInfoModel
      */
-    public $recentInfo = null;
+    public $recentInfo;
 
     /**
      * Reserved
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbPlayQueueModel
      */
-    public $playQueue = null;
+    public $playQueue;
 
     /**
      * Reserved
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbMcPlaylistModel
      */
-    public $mcPlaylist = null;
+    public $mcPlaylist;
 
     /**
      * Returns type of Net Radio. If there’s no list of this, it’s fixed to "vTuner"
@@ -71,5 +71,5 @@ class MusiccastDeviceFeatureNetUsbModel extends MusiccastBaseModel
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureNetUsbTidalModel
      */
-    public $tidal = null;
+    public $tidal;
 }

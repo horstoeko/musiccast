@@ -32,12 +32,12 @@ class MusiccastDeviceFeatureTunerModel extends MusiccastBaseModel
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeatureRangeModel
      */
-    public $rangeStep = null;
+    public $rangeStep;
 
     /**
      * Returns information related to Preset
      *
      * @var \horstoeko\musiccast\models\MusiccastDeviceFeaturePresetModel
      */
-    public $preset = null;
+    public $preset;
 }

@@ -57,7 +57,7 @@ class MusiccastBaseModelWithReturnCode
      */
     public function throwIfFailed(): void
     {
-        if ($this->isNotSuccessFull() === true) {
+        if ($this->isNotSuccessFull()) {
             throw new RuntimeException($this->getOperationMessage());
         }
     }

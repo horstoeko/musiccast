@@ -34,7 +34,7 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
      *
      * @var MusiccastOperatorSystem;
      */
-    protected $musiccastOperatorSystem = null;
+    protected $musiccastOperatorSystem;
 
     /**
      * Constructor
@@ -64,9 +64,7 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
             ], $newBand
         );
 
-        $responseObject = $this->musiccastConnection->requestGet("tuner/getPresetInfo?band={$newBand}", MusiccastTunerPresetInfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('tuner/getPresetInfo?band=' . $newBand, MusiccastTunerPresetInfoModel::class);
     }
 
     /**
@@ -106,9 +104,7 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
      */
     public function getPlayInfo(): MusiccastTunerPlayinfoModel
     {
-        $responseObject = $this->musiccastConnection->requestGet("tuner/getPlayInfo", MusiccastTunerPlayinfoModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet("tuner/getPlayInfo", MusiccastTunerPlayinfoModel::class);
     }
 
     /**
@@ -128,9 +124,7 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
             ], $newBand
         );
 
-        $responseObject = $this->musiccastConnection->requestGet("tuner/setBand?band={$newBand}", MusiccastTunerSetBandModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet('tuner/setBand?band=' . $newBand, MusiccastTunerSetBandModel::class);
     }
 
     /**
@@ -149,9 +143,7 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
             ], $newBand
         );
 
-        $responseObject = $this->musiccastConnection->requestGet("tuner/setFreq?band={$newBand}&tuning=direct&num={$unit}", MusiccastTunerSetFreqModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet(sprintf('tuner/setFreq?band=%s&tuning=direct&num=%d', $newBand, $unit), MusiccastTunerSetFreqModel::class);
     }
 
     /**
@@ -175,8 +167,6 @@ class MusiccastOperatorTuner extends MusiccastOperatorBase
 
         MusiccastValidation::testIntValueBetween($newNumber, 1, $deviceFeature->tuner->preset->num);
 
-        $responseObject = $this->musiccastConnection->requestGet("tuner/recallPreset?zone={$this->musiccastConnection->getZone()}&band={$newBand}&num={$newNumber}", MusiccastTunerRecallPresetModel::class);
-
-        return $responseObject;
+        return $this->musiccastConnection->requestGet(sprintf('tuner/recallPreset?zone=%s&band=%s&num=%d', $this->musiccastConnection->getZone(), $newBand, $newNumber), MusiccastTunerRecallPresetModel::class);
     }
 }

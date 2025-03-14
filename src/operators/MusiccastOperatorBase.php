@@ -27,7 +27,7 @@ class MusiccastOperatorBase
      *
      * @var MusiccastConnection;
      */
-    protected $musiccastConnection = null;
+    protected $musiccastConnection;
 
     /**
      * Constructor

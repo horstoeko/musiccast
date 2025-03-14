@@ -25,5 +25,5 @@ class MusiccastNetUsbSettingsQobuzModel extends MusiccastBaseModel
      *
      * @var \horstoeko\musiccast\models\MusiccastNetUsbSettingsQobuzQualityModel
      */
-    public $quality = null;
+    public $quality;
 }
